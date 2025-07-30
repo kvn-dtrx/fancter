@@ -1,0 +1,63 @@
+% !TeX encoding = UTF-8
+% !TeX program = pdflatex
+% !TeX spellcheck = de_DE
+
+\documentclass[%
+    % alignment is either standard, bodytohead or headtobody; default is standard
+    alignment       = standard,%
+    % whether to show some auxiliary rules; default is false
+    visualize       = false,%
+    % mainaccentcolor must be a colorname from (my-)xcolor; default is guardsmanred
+    mainaccentcolor = guardsmanred,%
+    % otheraccentcolor must be a colorname from (my-)xcolor; default is guardsmanred
+    otheraccentcolor = gray,%
+    % layercolor must be a colorname from (my-)xcolor; default is black
+    layercolor      = black,%
+    % mainlanguage must be a babel keyword; default is english
+    mainlanguage    = ngerman,%
+    % whether a verbose version of the current date should be displayed; default is false
+    verbosedate     = true,%
+    % whether a verbose version of the current place should be displayed; default is false
+    verboseplace    = true,%
+    % shift size at the beginning of the text body; default is 225 pt
+    refvpos         = 225 pt,%
+    % place which is reserved for the addressee field; default is 92 pt
+    toaddrheight    = 92pt,%
+]{my-letter}
+
+% Loads custom values of komvars
+\LoadLetterOption{my-komavars.private}
+
+% my-signature for the ~\InsertMySignature~ macro
+\usepackage{my-tikz-signature}
+\setkomavar{signature}{\InsertMySignature{1cm}{!}}
+
+\setkomavar{place}{Frankfurt}
+\setkomavar{dateyear}{1970}
+\setkomavar{datemonth}{01}
+\setkomavar{dateday}{01}
+\setkomavar{subject}[]{Passierschein A38}
+% \setkomavar{title}{Brieftitel (sic!)}
+\setkomavar{yourref}{{}}
+% \setkomavar{yourref}[\slshape Eure Referenz]{XY ungelöst}
+% \setkomavar{myref}[\slshape Seine Referenz]{AB klar} % not (yet) implemented
+
+\begin{document}
+
+\begin{letter}{Firma Freundlich\\Straße 12\\45678 Ortsname}
+
+    \opening{Sehr geehrte Damen und Herren,}
+
+    \kant[1]
+
+    Dieses Schreiben hat einen wichtigen Anhang!
+
+    \closing{Mit freundlichen Grüßen}
+
+    \encl{Passierschein A38}
+
+\end{letter}
+
+\Includepdf{a38}{assets/enclosure.pdf}
+
+\end{document}
