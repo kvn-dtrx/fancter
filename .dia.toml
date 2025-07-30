@@ -1,0 +1,11 @@
+[gitignore]
+sources = ["base.ignore", "latex.ignore"]
+target = ".gitignore"
+
+[latexmkrc]
+sources = ["base.pl"]
+target = "examples/.latexmkrc"
+
+[license]
+sources = ["mit.txt"]
+target = "license.txt"
