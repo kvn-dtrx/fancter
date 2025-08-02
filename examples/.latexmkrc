@@ -4,11 +4,7 @@
 
 # ---
 
-# ---
-# begin: .latexmkrc <- dia-project
-# ---
-
-# ---
+# Base
 
 # Output directory for PDF and other build artifacts.
 $out_dir = 'build';
@@ -45,9 +41,11 @@ $silence_logfile_warnings = 1;
 $ENV{'TEXINPUTS'} = join(':', (
     # Includes current directory.
     '.',
-    # Includes src directory recursively (double slash!).
-    'src//', 
-    # Includes src directory recursively (double slash!).
+    # Includes some standard directories recursively (double slash!).
+    'assets//',
+    'classes//',
+    'configs//',
+    'src//',
     'styles//',
     # Preserves existing directories.
     $ENV{'TEXINPUTS'} // '',
@@ -68,6 +66,9 @@ my @my_clean_ext = (
     'alg',
     'aux',
     'bbl',
+    'bbl-SAVE-ERROR',
+    '*.bcf',
+    '*.bcf-SAVE-ERROR',
     'blg',
     'fdb_latexmk',
     'fls',
@@ -93,6 +94,7 @@ my @my_clean_ext = (
     'thm',
     'toc',
     'vrb',
+    'wrt',
     'xdy',
 );
 $clean_ext = join(' ', @my_clean_ext);
@@ -109,12 +111,6 @@ my @more_generated_exts = (
     'gls',
 );
 push @generated_exts, @more_generated_exts;
-
-# ---
-
-# ---
-# end: .latexmkrc <- dia-project
-# ---
 
 # ---
 

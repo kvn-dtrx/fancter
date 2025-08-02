@@ -9,3 +9,7 @@ target = "examples/.latexmkrc"
 [license]
 sources = ["mit.txt"]
 target = "license.txt"
+
+[makefile]
+sources = ["latex-package.mk"]
+target = "makefile"

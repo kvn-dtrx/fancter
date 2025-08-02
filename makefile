@@ -1,7 +1,14 @@
-PACKAGE_NAME := my-letter
+# ---
+# begin: makefile <- dia-project
+# ---
+
+# ---
+
+PACKAGE_NAME := $(shell basename "$$PWD")
 STYLES := $(wildcard styles/*.sty)
 CLASSES := $(wildcard classes/*.cls)
-FILES := $(CLASSES) $(STYLES)
+CONFIGS := $(wildcard configs/*.cfg.sty)
+FILES := $(CLASSES) $(STYLES) $(CONFIGS)
 
 UNAME_S := $(shell uname -s)
 ifeq ($(TEXMF),)
@@ -15,9 +22,14 @@ endif
 TEXMF = $(HOME)/Library/texmf
 TARGET = $(TEXMF)/tex/latex/$(PACKAGE_NAME)
 
-.PHONY: install uninstall
+.PHONY: help install uninstall
 
-install:
+help: ## Shows this help
+	@echo "Available targets for make:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+	awk 'BEGIN {FS = ":.*?## "}; {printf "  %-13s: %s\n", $$1, $$2}'
+
+install: ## Installs package to TEXMF
 	mkdir -p $(TARGET)
 	@for file in $(FILES); do \
 		ln -sf "$$(realpath $$file)" "$(TARGET)/$$(basename $$file)"; \
@@ -25,9 +37,15 @@ install:
 # 	Not strictly necessary; however, it does not harm.
 	texhash "$(TEXMF)"
 
-uninstall:
+uninstall: ## Removes package from TEXMF
 	@for file in $(FILES); do \
 		rm -f "$(TARGET)/$$(basename $$file)"; \
 	done
 # 	Not strictly necessary; however, it does not harm.
 	texhash $(TEXMF)
+
+# ---
+
+# ---
+# end: makefile <- dia-project
+# ---
