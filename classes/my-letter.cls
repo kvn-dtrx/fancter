@@ -120,7 +120,7 @@
 % Some manipulation tools for komavars.
 % Introduces also some new of them and
 % gives them a default value.
-\RequirePackage{my-komavars}
+\RequirePackage{_ml-komavars.cfg}
 
 % kantlipsum for testing
 \RequirePackage{kantlipsum}
