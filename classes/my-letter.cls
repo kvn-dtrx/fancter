@@ -82,14 +82,10 @@
 
 % ---
 
-% \RequirePackage[T1]{fontenc}
-% One should use a monospaced sans-serif font for letters
+\RequirePackage[T1]{fontenc}
+% Biolinum sans-serif is monospaced.
 \RequirePackage[sfdefault]{biolinum}
-% Option 'sfdefault' only if the base font
-% of the document is to be sans serif
-
-% % The author's favorite serif font
-% \RequirePackage{fouriernc}
+% \renewcommand{\familydefault}{\sfdefault}
 
 \RequirePackage[%
     protrusion={false},%
@@ -224,41 +220,51 @@
 \newif\ifmy@alignment@specified
 \my@alignment@specifiedfalse
 
-% Usual "indentation" of text body.
-\ifnum\pdfstrcmp{\my@alignment}{standard}=0%
-    \geometry{%
-        inner={\StandOM},%
-        outer={\StandOM},%
-        top={1.9\toaddrhpos},%
-        bottom={1.9\toaddrhpos},%
-    }
-    \my@alignment@specifiedtrue
-\else\fi
+% \ifnum\pdf@strcmp{\my@alignment}{standard}=0%
+% \geometry{%
+% inner={\StandOM},%
+% outer={\StandOM},%
+% top={1.9\toaddrhpos},%
+% bottom={1.9\toaddrhpos},%
+% }
+% \my@alignment@specifiedtrue
+% \else\fi
 
-% Aligns body to head.
-\ifnum\pdfstrcmp{\my@alignment}{bodytohead}=0%
-    \geometry{%
-        % includehead,%
-        % includefoot,%
-        inner={\toaddrhpos},%
-        outer={\toaddrhpos},%
-        top={1.9\toaddrhpos},%
-        bottom={1.9\toaddrhpos},%
-    }
-    \my@alignment@specifiedtrue
-\else\fi
+\ExplSyntaxOn
+\str_case:nnF { \my@alignment }
+{
+    % Usual "indentation" of text body.
+    { standard }    { \geometry{inner=\StandOM, outer=\StandOM, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
+    % Aligns body to head.
+    { bodytohead }  { \geometry{inner=\toaddrhpos, outer=\toaddrhpos, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
+    % Aligns head to body (in hard conflict with DIN 5008!).
+    { headtobody }  { \geometry{inner=\StandOM, outer=\StandOM, top=1.414\StandOM, bottom=1.414\StandOM} \setplength{toaddrhpos}{\dimexpr\oddsidemargin+1in} \my@alignment@specifiedtrue }
+  }
+  { }
+\ExplSyntaxOff
 
-% Aligns head to body (in hard conflict with DIN 5008!).
-\ifnum\pdfstrcmp{\my@alignment}{headtobody}=0%
-    \geometry{%
-        inner={\StandOM},%
-        outer={\StandOM},%
-        top={1.414\StandOM},%
-        bottom={1.414\StandOM},%
-    }
-    \setplength{toaddrhpos}{\dimexpr\oddsidemargin+1in}
-    \my@alignment@specifiedtrue
-\else\fi
+% \ifnum\pdfstrcmp{\my@alignment}{bodytohead}=0%
+%     \geometry{%
+%         % includehead,%
+%         % includefoot,%
+%         inner={\toaddrhpos},%
+%         outer={\toaddrhpos},%
+%         top={1.9\toaddrhpos},%
+%         bottom={1.9\toaddrhpos},%
+%     }
+%     \my@alignment@specifiedtrue
+% \else\fi
+
+% \ifnum\pdfstrcmp{\my@alignment}{headtobody}=0%
+%     \geometry{%
+%         inner={\StandOM},%
+%         outer={\StandOM},%
+%         top={1.414\StandOM},%
+%         bottom={1.414\StandOM},%
+%     }
+%     \setplength{toaddrhpos}{\dimexpr\oddsidemargin+1in}
+%     \my@alignment@specifiedtrue
+% \else\fi
 
 % If no (valid) alignment option is specified,
 % set a default variant.
@@ -469,6 +475,7 @@
         nup={1x1},%
         pages={-},%
         linkname={#1},%
+        width=\paperwidth,%
     ]{#2} %
 }
 

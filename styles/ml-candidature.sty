@@ -14,18 +14,6 @@
 
 % ---
 
-% \usepackage{hyperref}
-
-% \usepackage{bookmark}       
-
-% \usepackage{xpatch}         
-
-% \usepackage{scrlttr2}       
-
-% \usepackage{enumitem}      
-
-% \usepackage{tabularx}
-
 % cover sheet with toc
 
 \newenvironment{coversheet}[1]{%
@@ -148,4 +136,38 @@
         \ifx\relax#2\relax\else{\bfseries #2}\\\fi%
         {#3}\\%
     }%
+}
+
+% ---
+
+\usepackage{tabularx,array}
+
+% Central header
+\chead*{
+% Box in box in order to avoid a
+% ~\headheight to low~ warning
+\raisebox{0pt}[0pt][0pt]{%
+\parbox[b][2.5cm][t]{\linewidth}{
+\centering%
+{\KOMAoption{fontsize}{20pt}\bfseries\scshape%
+{\color{mainaccentcolor}\usekomavar{fromgivenname}}~%
+{\color{otheraccentcolor}\usekomavar{fromlastname}}%
+}\\[0.5cm]
+\hypersetup{urlcolor=otheraccentcolor}
+\usekomavar[\edef\KOMAfromemail]{fromemail}%
+\usekomavar[\edef\KOMAfrommobilephone]{frommobilephone}%
+\usekomavar[\edef\KOMAfromlinkedin]{fromlinkedin}%
+\usekomavar[\edef\KOMAfromgithub]{fromgithub}%
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X} 
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{R L}
+\usekomavar{fromstreet} & \usekomavar{fromzip} \\
+\href{mailto:\KOMAfromemail}{\KOMAfromemail} & \telref{\KOMAfrommobilephone} \\
+\href{https:\KOMAfromlinkedin}{\KOMAfromlinkedin} & \href{https:\KOMAfromgithub}{\KOMAfromgithub}
+\end{tabularx}
+}
+}
 }
