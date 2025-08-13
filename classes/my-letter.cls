@@ -95,15 +95,20 @@
 
 % ---
 
-% TODO: Remove this dependency
-% my-xcolor for xcolor and a few named colors
-\RequirePackage{my-xcolor}
+\RequirePackage{xcolor}
 
-% Sets the colors
-\definecolor{mainaccentcolor}{named}{\my@mainaccentcolor}
-\definecolor{layercolor}{named}{\my@layercolor}
-\definecolor{otheraccentcolor}{named}{\my@otheraccentcolor}
-\definecolor{linkcolor}{named}{\my@linkcolor}
+% % Sets the colors
+% \definecolor{mainaccentcolor}{named}{\my@mainaccentcolor}
+% \definecolor{layercolor}{named}{\my@layercolor}
+% \definecolor{otheraccentcolor}{named}{\my@otheraccentcolor}
+% \definecolor{linkcolor}{named}{\my@linkcolor}
+
+\AtBeginDocument{%
+    \colorlet{mainaccentcolor}{\my@mainaccentcolor}
+    \colorlet{layercolor}{\my@layercolor}
+    \colorlet{otheraccentcolor}{\my@otheraccentcolor}
+    \colorlet{linkcolor}{\my@linkcolor}
+}
 
 % ---
 
@@ -143,7 +148,7 @@
 \def\telref#1{\href{tel:#1}{\phonenumber{#1}}}
 
 % % Can create invoice tables
-% \RequirePackage{my-invoice-table}
+% \RequirePackage{ml-invoice-table}
 
 % % Always required in some sense
 % \RequirePackage{my-macros-text}
@@ -235,12 +240,12 @@
 {
     % Usual "indentation" of text body.
     { standard }    { \geometry{inner=\StandOM, outer=\StandOM, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
-    % Aligns body to head.
-    { bodytohead }  { \geometry{inner=\toaddrhpos, outer=\toaddrhpos, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
-    % Aligns head to body (in hard conflict with DIN 5008!).
-    { headtobody }  { \geometry{inner=\StandOM, outer=\StandOM, top=1.414\StandOM, bottom=1.414\StandOM} \setplength{toaddrhpos}{\dimexpr\oddsidemargin+1in} \my@alignment@specifiedtrue }
-  }
-  { }
+        % Aligns body to head.
+        { bodytohead }  { \geometry{inner=\toaddrhpos, outer=\toaddrhpos, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
+        % Aligns head to body (in hard conflict with DIN 5008!).
+        { headtobody }  { \geometry{inner=\StandOM, outer=\StandOM, top=1.414\StandOM, bottom=1.414\StandOM} \setplength{toaddrhpos}{\dimexpr\oddsidemargin+1in} \my@alignment@specifiedtrue }
+}
+{ }
 \ExplSyntaxOff
 
 % \ifnum\pdfstrcmp{\my@alignment}{bodytohead}=0%

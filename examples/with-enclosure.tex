@@ -1,5 +1,7 @@
 % !TeX spellcheck = de_DE
 
+% ---
+
 \documentclass[%
     % alignment is either standard, bodytohead or headtobody; default is standard
     alignment       = standard,%
@@ -23,12 +25,23 @@
     toaddrheight    = 92pt,%
 ]{my-letter}
 
-% Loads custom values of komvars
-\LoadLetterOption{my-komavars.private}
+% TODO: Remove this dependency
+% my-xcolor for xcolor and a few named colors
+\RequirePackage{my-xcolor}
 
-% my-signature for the ~\InsertMySignature~ macro
-\usepackage{my-tikz-signature}
-\setkomavar{signature}{\InsertMySignature{1cm}{!}}
+
+% % Loads custom values of komvars
+% \LoadLetterOption{my-komavars.private}
+
+% % my-signature for the ~\InsertMySignature~ macro
+% \usepackage{my-tikz-signature}
+% \setkomavar{signature}{\InsertMySignature{1cm}{!}}
+
+\setkomavar{fromlastname}{Doe}
+\setkomavar{fromgivenname}{John}
+\setkomavar{fromstreet}{ABC Street 42}
+\setkomavar{fromzip}{12345}
+\setkomavar{fromemail}{john.doe@example.com}
 
 \setkomavar{place}{Frankfurt}
 \setkomavar{dateyear}{1970}

@@ -25,14 +25,24 @@
     toaddrheight = 92pt,%
 ]{my-letter}
 
-% Loads custom values of komvars
-\LoadLetterOption{my-komavars.private}
+% TODO: Remove this dependency
+% my-xcolor for xcolor and a few named colors
+\RequirePackage{my-xcolor}
 
-% my-signature for the ~\InsertMySignature~ macro
-\usepackage{my-tikz-signature}
-\setkomavar{signature}{\InsertMySignature{1cm}{!}}
+% % Loads custom values of komvars
+% \LoadLetterOption{my-komavars.private}
 
-\usepackage{my-invoice-table}
+% % my-signature for the ~\InsertMySignature~ macro
+% \usepackage{my-tikz-signature}
+% \setkomavar{signature}{\InsertMySignature{1cm}{!}}
+
+\usepackage{ml-invoice-table}
+
+\setkomavar{fromlastname}{Doe}
+\setkomavar{fromgivenname}{John}
+\setkomavar{fromstreet}{ABC Street 42}
+\setkomavar{fromzip}{12345}
+\setkomavar{fromemail}{john.doe@example.com}
 
 \setkomavar{place}{Frankfurt}
 \setkomavar{dateyear}{1970}
@@ -49,7 +59,7 @@
     \opening{Sehr geehrte Damen und Herren,}
 
     hiermit berechnen wir:
-    
+
     \begin{invoicetable}{19}
         \invoiceitem{Position A}{2}{24.95}
         \invoiceitem{Position B}{8}{180}
