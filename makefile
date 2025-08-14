@@ -1,9 +1,3 @@
-# ---
-# begin: makefile <- dia-project
-# ---
-
-# ---
-
 PACKAGE_NAME := $(shell basename "$$PWD")
 STYLES := $(wildcard styles/*.sty)
 CLASSES := $(wildcard classes/*.cls)
@@ -19,7 +13,6 @@ ifeq ($(TEXMF),)
     endif
 endif
 
-TEXMF = $(HOME)/Library/texmf
 TARGET = $(TEXMF)/tex/latex/$(PACKAGE_NAME)
 
 .PHONY: help install uninstall
@@ -43,9 +36,3 @@ uninstall: ## Removes package from TEXMF
 	done
 # 	Not strictly necessary; however, it does not harm.
 	texhash $(TEXMF)
-
-# ---
-
-# ---
-# end: makefile <- dia-project
-# ---

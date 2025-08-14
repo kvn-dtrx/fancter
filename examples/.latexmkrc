@@ -1,9 +1,3 @@
-# ---
-# begin: examples/.latexmkrc <- dia-project
-# ---
-
-# ---
-
 # Base
 
 # Output directory for PDF and other build artifacts.
@@ -11,9 +5,6 @@ $out_dir = 'build';
 
 # Output directory for auxiliary files.
 $aux_dir = 'build';
-
-# LaTeX engine: 1 = pdflatex, 4 = lualatex, 5 = xelatex
-$pdf_mode = 1;
 
 # Bibliography mode: # 0=off, 1=bibtex, 2=auto-detect (bibtex/biber).
 $bibtex_use = 2;
@@ -114,6 +105,7 @@ push @generated_exts, @more_generated_exts;
 
 # ---
 
-# ---
-# end: examples/.latexmkrc <- dia-project
-# ---
+# pdfLaTeX
+
+# LaTeX engine: 1 = pdflatex, 4 = lualatex, 5 = xelatex
+$pdf_mode = 1;

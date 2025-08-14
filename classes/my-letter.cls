@@ -68,7 +68,7 @@
     english,%
 }{babel}
 
-% babel for multiple language support
+% babel – Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX.
 \RequirePackage{babel}
 
 % According to Mr Kohm, the babel default value
@@ -77,7 +77,7 @@
 
 % ---
 
-% xpatch since there is always something to patch
+% xpatch – Extending etoolbox patching commands.
 \RequirePackage{xpatch}
 
 % ---
@@ -112,9 +112,9 @@
 
 % ---
 
-% TODO: Remove this dependency
-% my-enumitem for creating custom lists
-\RequirePackage{my-enumitem}
+% % TODO: Remove this dependency
+% % my-enumitem for creating custom lists
+% \RequirePackage{my-enumitem}
 
 % ---
 
@@ -123,22 +123,14 @@
 % gives them a default value.
 \RequirePackage{_ml-komavars.cfg}
 
-% kantlipsum for testing
-\RequirePackage{kantlipsum}
-
-% % fixme with some basic settings;
-% % must be loaded before ~imakeidx~
-% % due to a ~\index~ clinch
-% \RequirePackage{my-fixme}
-
-% geometry for defining a custom page layout
+% geometry – Flexible and complete interface to document dimensions.
 % (possibly incompatible with DIN 5008)
 \RequirePackage{geometry}
 
-% pdfpages for including pdf documents
+% pdfpages – Include PDF documents in LaTeX.
 \RequirePackage{pdfpages}
 
-% phonenumbers for ... phonenumbers
+% phonenumbers – Typesetting telephone numbers with LaTeX.
 \RequirePackage{phonenumbers}
 \setphonenumbers{%
     foreign,%
@@ -146,14 +138,6 @@
 }
 
 \def\telref#1{\href{tel:#1}{\phonenumber{#1}}}
-
-% % Can create invoice tables
-% \RequirePackage{ml-invoice-table}
-
-% % Always required in some sense
-% \RequirePackage{my-macros-text}
-
-% ---
 
 % hyperref
 \RequirePackage[%
@@ -164,14 +148,17 @@
     urlcolor={linkcolor},%
     anchorcolor={linkcolor},%
     pdfstartview={Fit},%
-    pdftoolbar={false},% Acrobat Reader toolbar
-    pdfmenubar={true},% Acrobat Reader menubar
+    % Acrobat Reader toolbar
+    pdftoolbar={false},
+    % Acrobat Reader menubar
+    pdfmenubar={true},
     pdfpagemode={UseOutlines},%
     pdfcreator={pdfLaTeX},%
     pdfpagelayout={OneColumn},%
     pdfpagelabels={true},%
     % pageanchor={false},%
-    bookmarksnumbered={false},% numbering for bookmarks
+    % numbering for bookmarks
+    bookmarksnumbered={false},
     bookmarksopen={true},%
 ]{hyperref}
 
@@ -204,7 +191,7 @@
     \endgroup
 }
 
-% bookmark
+% bookmark – A new bookmark (outline) organization for hyperref.
 \RequirePackage{bookmark}
 
 % ---
@@ -221,7 +208,7 @@
 \setlength{\toaddrhpos}{56.9055pt}
 
 % Toggle that will detect if an alignment version was specified
-% (and if putting a default option must be done).
+% (and whether putting a default option must be done).
 \newif\ifmy@alignment@specified
 \my@alignment@specifiedfalse
 
@@ -288,24 +275,18 @@
 % and footer design at one's own
 \RequirePackage{scrlayer-scrpage}
 
-% lastpage for knowing the total account of pages
-% (accessibel via ~\pageref{LastPage}~)
+% lastpage – Reference last page for Page N of M type footers.
 \RequirePackage{lastpage}
 
 % All pages may share the same pagestyle option
 \pagestyle{scrheadings}
 \xpatchcmd{\opening}{\thispagestyle{empty}}{}{}{}
-% The next patch is only necessary
-% for ~scrletter.sty~ but not for ~scrlttr2.cls~
+% The patch is only for `scrletter.sty`, not for `scrlttr2.cls`.
 \xpatchcmd{\letter}{\pagestyle{\letterpagestyle}}{}{}{}
 
-% Footer's left
+% Footer – inner (left), central, outer (right).
 \ifoot*{\usekomavar{date}}
-
-% Footer's middle
 \cfoot*{\thepage{}\,{\ensuremath{|}}\,\letterlastpage}
-
-% Footer's right
 \ofoot*{\usekomavar{place}}
 
 % Central header
