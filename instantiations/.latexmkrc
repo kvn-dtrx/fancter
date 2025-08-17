@@ -31,13 +31,14 @@ $silence_logfile_warnings = 1;
 # TEXINPUTS (List of directories to look for TeX files).
 $ENV{'TEXINPUTS'} = join(':', (
     # Includes current directory.
-    '.',
-    # Includes some standard directories recursively (double slash!).
-    'assets//',
-    'classes//',
-    'configs//',
-    'src//',
-    'styles//',
+    '../src//',
+    '..//',
+    # # Includes some standard directories recursively (double slash!).
+    # 'assets//',
+    # 'classes//',
+    # 'configs//',
+    # 'src//',
+    # 'styles//',
     # Preserves existing directories.
     $ENV{'TEXINPUTS'} // '',
 ));
@@ -108,4 +109,4 @@ push @generated_exts, @more_generated_exts;
 # pdfLaTeX
 
 # LaTeX engine: 1 = pdflatex, 4 = lualatex, 5 = xelatex
-$pdf_mode = 1;
+$pdf_mode = 4;

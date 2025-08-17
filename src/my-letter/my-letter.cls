@@ -128,7 +128,7 @@
 % Some manipulation tools for komavars.
 % Introduces also some new of them and
 % gives them a default value.
-\RequirePackage{_ml-komavars.cfg}
+\input{segments/_ml-komavars.tex}
 
 % geometry – Flexible and complete interface to document dimensions.
 \RequirePackage{geometry}
@@ -387,7 +387,7 @@
 \KOMAoptions{
     addrfield=topaligned,%
     backaddress=false,%
-    foldmarks={h,p},%
+    % foldmarks={h,p},%
     % fromalign=center,%
     % fromemail=true,%
     % fromlogo=false,%
@@ -398,7 +398,7 @@
     % locfield=wide,%
     % numericaldate=true,%
     % priority=false,%
-    subject={beforeopening,left},%
+    % subject={beforeopening,left},%
     refline=nodate,%
 }
 
