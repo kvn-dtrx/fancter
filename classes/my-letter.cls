@@ -82,10 +82,29 @@
 
 % ---
 
-\RequirePackage[T1]{fontenc}
-% Biolinum sans-serif is monospaced.
-\RequirePackage[sfdefault]{biolinum}
-% \renewcommand{\familydefault}{\sfdefault}
+% fontspec – Advanced font selection in XeLaTeX and LuaLaTeX.
+\RequirePackage{fontspec}
+
+% Font features.
+\defaultfontfeatures{
+    % Enables classic TeX-style ligatures:
+    % - `fi', `fl' etc. with ligature.
+    % - `...` to …, `--` to `–` etc.
+    Ligatures=TeX,%
+    % Use old-style (text) digits with varying heights.
+    Numbers=OldStyle,%
+    % NOTE: Does not work for Libertinus
+    % % Enables contextual alternate glyphs such
+    % % as the trailing sigma in Ancient Greek.
+    % Contextuals=All,%
+}
+
+% Sets default fonts.
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+
+\renewcommand{\familydefault}{\sfdefault}
 
 \RequirePackage[%
     protrusion={false},%
@@ -97,12 +116,6 @@
 
 \RequirePackage{xcolor}
 
-% % Sets the colors
-% \definecolor{mainaccentcolor}{named}{\my@mainaccentcolor}
-% \definecolor{layercolor}{named}{\my@layercolor}
-% \definecolor{otheraccentcolor}{named}{\my@otheraccentcolor}
-% \definecolor{linkcolor}{named}{\my@linkcolor}
-
 \AtBeginDocument{%
     \colorlet{mainaccentcolor}{\my@mainaccentcolor}
     \colorlet{layercolor}{\my@layercolor}
@@ -112,19 +125,12 @@
 
 % ---
 
-% % TODO: Remove this dependency
-% % my-enumitem for creating custom lists
-% \RequirePackage{my-enumitem}
-
-% ---
-
 % Some manipulation tools for komavars.
 % Introduces also some new of them and
 % gives them a default value.
 \RequirePackage{_ml-komavars.cfg}
 
 % geometry – Flexible and complete interface to document dimensions.
-% (possibly incompatible with DIN 5008)
 \RequirePackage{geometry}
 
 % pdfpages – Include PDF documents in LaTeX.
@@ -182,7 +188,7 @@
 % Makes all page anchors to be displayed in full page mode,
 % i.e. the zoom level is changed to make the whole page fit on the screen.
 % Originally found at:
-% [[https://tex.stackexchange.com/questions/19412][Linking a text to a page (by page number)]]
+% [Linking a text to a page (by page number)](https://tex.stackexchange.com/questions/19412)
 \let\old@Hy@EveryPageAnchor\Hy@EveryPageAnchor
 \def\Hy@EveryPageAnchor{%
     \begingroup
@@ -378,27 +384,28 @@
 \addtokomafont{pageheadfoot}{\color{otheraccentcolor}}
 
 % Further settings
-\KOMAoption{addrfield}{topaligned}
-% \KOMAoption{backaddress}{plain}
-\KOMAoption{backaddress}{false}
-\KOMAoption{foldmarks}{h, p}
-%\KOMAoption{fromalign}{center}
-%\KOMAoption{fromemail}{true}
-%\KOMAoption{fromlogo}{false}
-%\KOMAoption{frommobilephone}{false}
-%\KOMAoption{fromphone}{false}
-%\KOMAoption{fromrule}{afteraddress}
-%\KOMAoption{fromurl}{false}
-%\KOMAoption{locfield}{wide}
-%\KOMAoption{numericaldate}{true}
-%\KOMAoption{priority}{false}
-\KOMAoption{subject}{beforeopening, left}
-\KOMAoption{refline}{nodate}
+\KOMAoptions{
+    addrfield=topaligned,%
+    backaddress=false,%
+    foldmarks={h,p},%
+    % fromalign=center,%
+    % fromemail=true,%
+    % fromlogo=false,%
+    % frommobilephone=false,%
+    % fromphone=false,%
+    % fromrule=afteraddress,%
+    % fromurl=false,%
+    % locfield=wide,%
+    % numericaldate=true,%
+    % priority=false,%
+    subject={beforeopening,left},%
+    refline=nodate,%
+}
 
 % Some scrlttr2 pseudolengths
 % A graphic illustrating all pseudolengths
 % of a letter can be found at:
-% [[https://tex.stackexchange.com/questions/109797][How to remove space between back address and address in scrlttr2?]]
+% [How to remove space between back address and address in scrlttr2?](https://tex.stackexchange.com/questions/109797)
 \setplength{locwidth}{\useplength{toaddrwidth}}
 \setplength{refvpos}{\my@refvpos}
 \setplength{sigindent}{0cm}
