@@ -56,8 +56,8 @@
 % scrletter is KOMA's letter package (not class)
 \RequirePackage{scrletter}
 
-% Principally, one could also load the class ~scrlttr2~
-% but then no toc functionality would be available
+% NOTE: In contrast to employing letter from the koma with 
+% the class scrlttr2, but then no toc functionality would be available
 
 % ---
 
@@ -324,12 +324,10 @@
 % Information will be printed by vanilla header
 \KOMAoption{firsthead}{false}
 \KOMAoption{nexthead}{}
-\KOMAoption{headwidth}{\useplength{firstheadwidth}}
 
 % Do not print the scrlttr2 default first page header
 \KOMAoption{firstfoot}{false}
 \KOMAoption{nextfood}{}
-\KOMAoption{footwidth}{\useplength{firstheadwidth}}
 
 \KOMAoption{headwidth}{\useplength{firstheadwidth}}
 \KOMAoption{footwidth}{\useplength{firstheadwidth}}
@@ -348,13 +346,6 @@
         refline,%
     }
 \else\fi%
-
-% ---
-
-% With ~scrletter~, the command
-% \addtokomafont{subject}{\normalfont\bfseries\scshape\large}
-% is ignored and one has to add
-\addtokomafont{lettersubject}{\normalfont\bfseries\scshape\large}
 
 % ---
 
@@ -381,13 +372,15 @@
 \addtokomafont{foldmark}{\color{mainaccentcolor}}
 \addtokomafont{title}{\normalfont\bfseries}
 \addtokomafont{subject}{\normalfont\bfseries\scshape\large}
+% ENIGMA: The package scrletter only recognises lettersubject:
+\addtokomafont{lettersubject}{\normalfont\bfseries\scshape\large}
 \addtokomafont{pageheadfoot}{\color{otheraccentcolor}}
 
 % Further settings
 \KOMAoptions{
     addrfield=topaligned,%
     backaddress=false,%
-    % foldmarks={h,p},%
+    foldmarks=false,%
     % fromalign=center,%
     % fromemail=true,%
     % fromlogo=false,%
@@ -408,7 +401,7 @@
 % [How to remove space between back address and address in scrlttr2?](https://tex.stackexchange.com/questions/109797)
 \setplength{locwidth}{\useplength{toaddrwidth}}
 \setplength{refvpos}{\my@refvpos}
-\setplength{sigindent}{0cm}
+\setplength{sigindent}{0pt}
 % \setplength{sigbeforevskip}{1cm}
 % \setplength{backaddrheight}{11pt}
 \setplength{toaddrheight}{\my@toaddrheight}
@@ -417,6 +410,7 @@
 
 % ---
 
+% TODO Remove this dependency
 % my-bg-layer for the background layer
 \RequirePackage{my-bg-layer}
 \mybglayersetup{%
@@ -468,7 +462,7 @@
         nup={1x1},%
         pages={-},%
         linkname={#1},%
-        width=\paperwidth,%
+        width={\paperwidth},%
     ]{#2} %
 }
 
@@ -486,3 +480,5 @@
 \xpretocmd{\enddocument}{\SHIPOUTpdfAttachments}{}{}
 
 % ---
+
+% \input{segments/_ml-komavars.tex}

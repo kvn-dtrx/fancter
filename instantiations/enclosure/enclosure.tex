@@ -25,45 +25,42 @@
     toaddrheight    = 92pt,%
 ]{my-letter}
 
-% my-xcolor – xcolor plus a few custom colors.
-\RequirePackage{my-xcolor}
+% xcolor is internally loaded.
+\definecolor{nf-raisin-black}{rgb}{0.15, 0.15, 0.16}
+\definecolor{guardsmanred}{rgb}{0.80, 0.00, 0.00}
 
 % kantlipsum – Generate sentences in Kant's style.
 \RequirePackage{kantlipsum}
 
-% % Loads custom values of komvars
-% \LoadLetterOption{my-komavars.private}
+\setkomavar{fromlastname}{Kant}
+\setkomavar{fromgivenname}{Immanuel}
+\setkomavar{fromstreet}{Königsberg, Prussia}
+\setkomavar{fromemail}{immanuel.kant@example.com}
 
-% % my-signature for the ~\InsertMySignature~ macro
-% \usepackage{my-tikz-signature}
-% \setkomavar{signature}{\InsertMySignature{1cm}{!}}
+\setkomavar{place}{Königsberg}
+\setkomavar{dateyear}{1804}
+\setkomavar{datemonth}{04}
+\setkomavar{dateday}{23}
+\setkomavar{subject}[]{Form A38}
 
-\setkomavar{fromlastname}{Doe}
-\setkomavar{fromgivenname}{John}
-\setkomavar{fromstreet}{ABC Street 42}
-\setkomavar{fromzip}{12345}
-\setkomavar{fromemail}{john.doe@example.com}
-
-\setkomavar{place}{Frankfurt}
-\setkomavar{dateyear}{1970}
-\setkomavar{datemonth}{01}
-\setkomavar{dateday}{01}
-\setkomavar{subject}[]{Passierschein A38}
-% \setkomavar{title}{Brieftitel (sic!)}
-\setkomavar{yourref}{{}}
-% \setkomavar{yourref}[\slshape Eure Referenz]{XY ungelöst}
-% \setkomavar{myref}[\slshape Seine Referenz]{AB klar} % not (yet) implemented
+\setkomavar{signature}{Immanuel Kant}
 
 \begin{document}
 
-\begin{letter}{Firma Freundlich\\Straße 12\\45678 Ortsname}
+\begin{letter}{Georg Wilhelm Friedrich Hegel, Jena University, Philosophy Department}
 
-    \opening{Sehr geehrte Damen und Herren,}
+    \opening{Esteemed Herr Hegel,}
 
-    \kant[1]
+    \kant[1-2]
 
-    \closing{Mit freundlichen Grüßen}
+    \textbf{Please fill Form A38 ("Passierschein A38").}
+
+    \closing{Yours in the service of reason,}
+
+    \encl{Form A38}
 
 \end{letter}
+
+\Includepdf{a38}{assets/form-a38.pdf}
 
 \end{document}

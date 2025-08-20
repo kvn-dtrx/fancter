@@ -1,22 +1,8 @@
 % ---
 % description: my-komavars
-% author: [N.N.]()
 % ---
 
-\NeedsTeXFormat{LaTeX2e}
-
-\ProvidesPackage{_ml-komavars.cfg}[%
-    2019-01-01 v0.0-dev Additional KoMa variables for my-letter%
-]
-
 % ---
-
-% Load KOMA letter package when the invoked KOMA class is not the letter class.
-\@ifclassloaded{scrlttr2}{%
-    \relax%
-}{%
-    \RequirePackage{scrletter}%
-}
 
 % Some new KOMAvars.
 \newkomavar{fromgivenname}

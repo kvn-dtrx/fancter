@@ -110,3 +110,5 @@ push @generated_exts, @more_generated_exts;
 
 # LaTeX engine: 1 = pdflatex, 4 = lualatex, 5 = xelatex
 $pdf_mode = 4;
+
+@default_files = glob('*/*.tex');

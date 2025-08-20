@@ -1,0 +1,101 @@
+% !TeX spellcheck = de_DE
+
+% ---
+
+\documentclass[%
+    % alignment is either standard, bodytohead or headtobody; default is standard
+    alignment       = standard,%
+    % whether to show some auxiliary rules; default is false
+    visualize       = false,%
+    % mainaccentcolor must be a colorname from (my-)xcolor; default is guardsmanred
+    mainaccentcolor = guardsmanred,%
+    % otheraccentcolor must be a colorname from (my-)xcolor; default is guardsmanred
+    otheraccentcolor = gray,%
+    % layercolor must be a colorname from (my-)xcolor; default is black
+    layercolor      = black,%
+    % mainlanguage must be a babel keyword; default is english
+    mainlanguage    = ngerman,%
+    % whether a verbose version of the current date should be displayed; default is false
+    verbosedate     = true,%
+    % whether a verbose version of the current place should be displayed; default is false
+    verboseplace    = true,%
+    % shift size at the beginning of the text body; default is 225 pt
+    refvpos         = 225 pt,%
+    % place which is reserved for the addressee field; default is 92 pt
+    toaddrheight    = 92pt,%
+]{my-letter}
+
+% xcolor is internally loaded.
+\definecolor{nf-raisin-black}{rgb}{0.15, 0.15, 0.16}
+\definecolor{guardsmanred}{rgb}{0.80, 0.00, 0.00}
+
+\usepackage{mlttr-candidature}
+
+% kantlipsum – Generate sentences in Kant's style.
+\RequirePackage{kantlipsum}
+
+\setkomavar{fromlastname}{Kant}
+\setkomavar{fromgivenname}{Immanuel}
+\setkomavar{fromstreet}{Königsberg, Prussia}
+\setkomavar{fromzip}{12345}
+\setkomavar{fromemail}{immanuel.kant@example.com}
+
+\setkomavar{place}{Königsberg}
+\setkomavar{dateyear}{1804}
+\setkomavar{datemonth}{02}
+\setkomavar{dateday}{13}
+\setkomavar{subject}[]{Application for Professorship in Transcendental Philosophy}
+
+\setkomavar{signature}{Immanuel Kant}
+
+\begin{document}
+
+
+% Motivational letter
+% ENIGMA Additional environment really necessary?
+\begin{letter}{To the Search Committee, Noumenal University}
+
+    \opening{Esteemed Committee,}
+
+    \kant[1-2]
+
+    \closing{With the highest respect,}
+
+    \ps{P.\,S.: <postscriptum>}
+
+    \encl{<attachment1>, ...}
+
+\end{letter}
+
+% CV
+\begin{cv}[Curriculum Vitæ]
+
+    % Theses
+
+    \begin{cvblock}{Ph.\,D. Thesis}{Metadata}
+        \cvitem{Title}{}{A New Elucidation of the First Principles of Metaphysical Cognition}
+        % \cvitem{Advisor}{}{Martin Knutzen}
+        \cvitem{Year}{}{1755}
+        \cvitem{Description}{}{In this thesis, I endeavored to clarify the first principles of metaphysical cognition, distinguishing the conditions of knowledge from the content of experience.}
+    \end{cvblock}
+
+    \begin{cvblock}{Magister Thesis}{Metadata}
+        \cvitem{Title}{}{Brief Outline of Certain Meditations on Fire}
+        \cvitem{Advisor}{}{Johann Gottfried Teske}
+        \cvitem{Year}{}{1755}
+        \cvitem{Description}{}{In this thesis, I investigated the nature of fire and its role in natural philosophy, continuing my studies in physics and metaphysics.}
+    \end{cvblock}
+
+    % Languages
+
+    \begin{cvblock}{Skills}{}
+        \cvitem{Languages}{}{German, Latin, Ancient Greek}
+    \end{cvblock}
+
+    \closing{
+        The starry heavens above me and the moral law within me.
+    }
+
+\end{cv}
+
+\end{document}

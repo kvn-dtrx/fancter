@@ -25,32 +25,27 @@
     toaddrheight = 92pt,%
 ]{my-letter}
 
-% my-xcolor – xcolor plus a few custom colors.
-\RequirePackage{my-xcolor}
+% xcolor is internally loaded.
+\definecolor{nf-raisin-black}{rgb}{0.15, 0.15, 0.16}
+\definecolor{guardsmanred}{rgb}{0.80, 0.00, 0.00}
 
 % kantlipsum – Generate sentences in Kant's style.
 \RequirePackage{kantlipsum}
 
-% % Loads custom values of komvars
-% \LoadLetterOption{my-komavars.private}
+\setkomavar{signature}{Immanuel Kant}
 
-% % my-signature for the ~\InsertMySignature~ macro
-% \usepackage{my-tikz-signature}
-% \setkomavar{signature}{\InsertMySignature{1cm}{!}}
+% mlttr-invoice-table – Invoice Table for Letters.
+\usepackage{mlttr-invoice-table}
 
-% ml-invoice-table – Invoice Table for Letters.
-\usepackage{ml-invoice-table}
+\setkomavar{fromlastname}{Kant}
+\setkomavar{fromgivenname}{Immanuel}
+\setkomavar{fromstreet}{Königsberg, Prussia}
+\setkomavar{fromemail}{immanuel.kant@example.com}
 
-\setkomavar{fromlastname}{Doe}
-\setkomavar{fromgivenname}{John}
-\setkomavar{fromstreet}{ABC Street 42}
-\setkomavar{fromzip}{12345}
-\setkomavar{fromemail}{john.doe@example.com}
-
-\setkomavar{place}{Frankfurt}
-\setkomavar{dateyear}{1970}
-\setkomavar{datemonth}{01}
-\setkomavar{dateday}{01}
+\setkomavar{place}{Königsberg}
+\setkomavar{dateyear}{1804}
+\setkomavar{datemonth}{02}
+\setkomavar{dateday}{13}
 \setkomavar{subject}[]{Eine generische Rechnung}
 % \setkomavar{title}{Brieftitel (sic!)}
 \setkomavar{yourref}{{}}
@@ -58,15 +53,17 @@
 % \setkomavar{myref}[\slshape Seine Referenz]{AB klar} % not (yet) implemented
 
 \begin{document}
-\begin{letter}{Firma Freundlich\\Straße 12\\45678 Ortsname}
-    \opening{Sehr geehrte Damen und Herren,}
 
-    hiermit berechnen wir:
+\begin{letter}{Georg Wilhelm Friedrich Hegel\\Jena University\\Philosophy Department}
+
+    \opening{Esteemed Herr Hegel,}
+
+    \kant[1]
 
     \begin{invoicetable}{19}
-        \invoiceitem{Position A}{2}{24.95}
-        \invoiceitem{Position B}{8}{180}
-        \invoiceitem{Position C}{0.75}{30.50}
+        \invoiceitem{Critique of Pure Reason}{1}{29.95}
+        \invoiceitem{Critique of Practical Reason}{2}{19.95}
+        \invoiceitem{Critique of Judgement}{3}{9.95}
     \end{invoicetable}
 
     Bitte überweisen Sie den Rechnungsbetrag von \Totalsum{} unter Angabe von Rechnungsnummer und -datum auf das folgende Konto:
