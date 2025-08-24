@@ -28,7 +28,7 @@
 \newenvironment{coversheet}[1]{%
     \phantomsection%
     \label{coversheet}%
-    % Simple bookmark and no ~\addcontentsline~ for obvious reasons
+    % Simple bookmark and no `\addcontentsline` for obvious reasons
     % (This would be a fixed point of the document!)
     \bookmark[%
         dest={page.\getpagerefnumber{coversheet}},%
@@ -43,7 +43,7 @@
 }
 
 \newcommand{\cover}[4]{%
-    % Requires ~hvcenter~ from ~my-cros-text~
+    % Requires `hvcenter` from `my-cros-text`
     \begin{hvcenter}%
         \scshape
         {\large #1} \\[1.0cm]
@@ -54,7 +54,7 @@
     \end{hvcenter}
 }
 
-% ~\addcontentsline~ should not set bookmarks
+% `\addcontentsline` should not set bookmarks
 \xpatchcmd{\addcontentsline}{%
     \Hy@writebookmark{\csname the#2\endcsname}%
     {#3}%
@@ -93,7 +93,7 @@
     \phantomsection%
     \label{cv}
     \ADDtocEntry{page.\getpagerefnumber{cv}}{#1}%
-    % Stolen from ~\@makelettertitle~
+    % Stolen from `\@makelettertitle`
     \begingroup
     \setparsizes{\z@}{\z@}{\z@ plus 1fil}\par@updaterelative
     \centering\Huge\scshape#1\par
@@ -103,9 +103,9 @@
     \pagebreak[4]%
 }
 
-% A cv is divided into blocks (~\cvblocks~):
+% A cv is divided into blocks (`\cvblocks`):
 % personal data, the "true" cv, skills, publications ...
-% Every block itself is a list environment (~\cvlist~)
+% Every block itself is a list environment (`\cvlist`)
 
 \newlist{cvlist}{itemize}{1}
 \setlist[cvlist]{%
@@ -149,7 +149,7 @@
 % Central header
 \chead*{
 % Box in box in order to avoid a
-% ~\headheight to low~ warning
+% `\headheight to low` warning
 \raisebox{0pt}[0pt][0pt]{%
 \parbox[b][2.5cm][t]{\linewidth}{
 \centering%

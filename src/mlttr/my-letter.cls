@@ -61,7 +61,7 @@
 
 % ---
 
-% Passing the option ~mainlanguage~ to ~babel~
+% Passing the option `mainlanguage` to `babel`
 \PassOptionsToPackage{%
     main={\my@mainlanguage},%
     ngerman,%
@@ -72,7 +72,7 @@
 \RequirePackage{babel}
 
 % According to Mr Kohm, the babel default value
-% for the ngerman ~enclname~ is wrong.
+% for the ngerman `enclname` is wrong.
 \renewcaptionname{ngerman}{\enclname}{Anlage}
 
 % ---
@@ -170,7 +170,7 @@
 
 % A setter for pdfmetadata, also compatible
 % with atomic komavars. Found at:
-% [[https://tex.stackexchange.com/questions/458679][Fill pdfinfo metadata with \usekomavar{} not working]]
+% [Fill pdfinfo metadata with \usekomavar{} not working](https://tex.stackexchange.com/questions/458679)
 \newcommand\setpdfinfo[2]{%
     \hypersetup{pdfinfo={#1={#2}}}
 }
@@ -202,7 +202,7 @@
 
 % ---
 
-% Furthermore, ~scrlayer-scrpage~ is required ...
+% Furthermore, `scrlayer-scrpage` is required ...
 % but not before geometry's alignment settings are finished!
 
 % The "standard" odd margin value
@@ -298,7 +298,7 @@
 % Central header
 \chead*{
 % Box in box in order to avoid a
-% ~\headheight to low~ warning
+% `\headheight to low` warning
 \raisebox{0pt}[0pt][0pt]{%
 \parbox[b][2.5cm][t]{\linewidth}{
 \centering%
