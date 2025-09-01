@@ -1,0 +1,7 @@
+project:
+  name: My Letter
+  description: A custom LaTeX letter class
+  github: https://github.com/kvn-dtrx/my-letter
+  authors:
+    - name: Kvn Dtrx
+      mail: kvn.dtrx+git@protonmail.ch

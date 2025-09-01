@@ -43,16 +43,20 @@
 }
 
 \newcommand{\cover}[4]{%
-    % Requires `hvcenter` from `my-cros-text`
-    \begin{hvcenter}%
+    \begin{center}%
+        \topskip0pt%
+        \vspace*{\fill}%
         \scshape
         {\large #1} \\[1.0cm]
         {\LARGE #2} \\[1.0cm]
         {\large #3} \\[1.0cm]
         {\LARGE #4} \\[1.0cm]
         {\usekomavar{konterfei}} \\[1.0cm]
-    \end{hvcenter}
+        \vspace*{\fill}%
+    \end{center}
 }
+
+% ---
 
 % `\addcontentsline` should not set bookmarks
 \xpatchcmd{\addcontentsline}{%
