@@ -56,7 +56,7 @@
 % scrletter is KOMA's letter package (not class)
 \RequirePackage{scrletter}
 
-% NOTE: In contrast to employing letter from the koma with 
+% NOTE: In contrast to employing letter from the koma with
 % the class scrlttr2, but then no toc functionality would be available
 
 % ---

@@ -46,7 +46,7 @@ $ENV{'TEXINPUTS'} = join(':', (
 # BIBINPUTS (List of directories to look for BibTeX files).
 $ENV{'BIBINPUTS'} = join(':', (
     # Includes styles directory recursively (double slash!).
-    'bib//', 
+    'bib//',
     # Preserves existing directories.
     $ENV{'BIBINPUTS'} // '',
 ));
