@@ -410,9 +410,9 @@
 
 % ---
 
-% TODO Remove this dependency
-% my-bg-layer for the background layer
-\RequirePackage{my-bg-layer}
+% TODO: Remove this dependency
+% ml-bg-layer for the background layer
+\RequirePackage{_ml-bg-layer}
 \mybglayersetup{%
     yshiftathead={15pt},%
     yshiftatfoot={-30pt},%

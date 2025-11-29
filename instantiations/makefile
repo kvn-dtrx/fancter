@@ -13,7 +13,7 @@ compile:
 	done
 
 clean:
-	find build -mindepth 1 ! \( -name '' \
+	find build -mindepth 1 ! \( -name "" \
 		-or -name '*.pdf' \
 		-or -name '*.png' \
 		-or -name '*.tex' \

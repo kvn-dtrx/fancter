@@ -30,7 +30,7 @@ cp: ## Copies package into TEXMF
 ln: ## Symlinks package into TEXMF
 	@mkdir -p $(TARGET)
 	@for package in $(PACKAGES); do \
-		echo ln -sf "$$(realpath src/$$package)" "$(TARGET)/"; \
+		ln -sf "$$(realpath src/$$package)" "$(TARGET)/"; \
 	done
 # 	Not strictly necessary; however, it does not harm.
 	texhash "$(TEXMF)"
