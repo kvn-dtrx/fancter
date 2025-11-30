@@ -14,11 +14,11 @@ compile:
 
 clean:
 	find build -mindepth 1 ! \( -name "" \
-		-or -name '*.pdf' \
-		-or -name '*.png' \
-		-or -name '*.tex' \
-		-or -name '.gitkeep' \
+		-or -name "*.pdf" \
+		-or -name "*.png" \
+		-or -name "*.tex" \
+		-or -name ".gitkeep" \
 	\) -delete
 
 reset:
-	find build -mindepth 1 ! \( -name '.gitkeep' \) -delete
+	find build -mindepth 1 ! \( -name ".gitkeep" \) -delete
