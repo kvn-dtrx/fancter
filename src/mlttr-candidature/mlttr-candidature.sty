@@ -5,7 +5,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 \ProvidesPackage{mlttr-candidature}[%
-    2019/01/01 v0.0-dev Candidature Macros for Letters%
+  2019/01/01 v0.0-dev Candidature Macros for Letters%
 ]
 
 % Very helpful references for creating this package:
@@ -26,45 +26,45 @@
 % cover sheet with toc
 
 \newenvironment{coversheet}[1]{%
-    \phantomsection%
-    \label{coversheet}%
-    % Simple bookmark and no `\addcontentsline` for obvious reasons
-    % (This would be a fixed point of the document!)
-    \bookmark[%
-        dest={page.\getpagerefnumber{coversheet}},%
-        level={section},%
-    ]{#1}
+  \phantomsection%
+  \label{coversheet}%
+  % Simple bookmark and no `\addcontentsline` for obvious reasons
+  % (This would be a fixed point of the document!)
+  \bookmark[%
+    dest={page.\getpagerefnumber{coversheet}},%
+    level={section},%
+  ]{#1}
 }{%
-    \begin{tabular}[t]{l@{\hskip 5pt}r@{\hskip 11pt}}
-        \begin{minipage}{0.5\linewidth} \tableofcontents \end{minipage} & {} \\
-    \end{tabular}\ignorespacesafterend%
+  \begin{tabular}[t]{l@{\hskip 5pt}r@{\hskip 11pt}}
+    \begin{minipage}{0.5\linewidth} \tableofcontents \end{minipage} & {} \\
+  \end{tabular}\ignorespacesafterend%
 
-    \pagebreak[4]%
+  \pagebreak[4]%
 }
 
 \newcommand{\cover}[4]{%
-    \begin{center}%
-        \topskip0pt%
-        \vspace*{\fill}%
-        \scshape
-        {\large #1} \\[1.0cm]
-        {\LARGE #2} \\[1.0cm]
-        {\large #3} \\[1.0cm]
-        {\LARGE #4} \\[1.0cm]
-        {\usekomavar{konterfei}} \\[1.0cm]
-        \vspace*{\fill}%
-    \end{center}
+  \begin{center}%
+    \topskip0pt%
+    \vspace*{\fill}%
+    \scshape
+    {\large #1} \\[1.0cm]
+    {\LARGE #2} \\[1.0cm]
+    {\large #3} \\[1.0cm]
+    {\LARGE #4} \\[1.0cm]
+    {\usekomavar{konterfei}} \\[1.0cm]
+    \vspace*{\fill}%
+  \end{center}
 }
 
 % ---
 
 % `\addcontentsline` should not set bookmarks
 \xpatchcmd{\addcontentsline}{%
-    \Hy@writebookmark{\csname the#2\endcsname}%
-    {#3}%
-    {\@currentHref}%
-    {\Hy@toclevel}%
-    {#1}%
+  \Hy@writebookmark{\csname the#2\endcsname}%
+  {#3}%
+  {\@currentHref}%
+  {\Hy@toclevel}%
+  {#1}%
 }{}{}{}
 
 
@@ -72,8 +72,8 @@
 \deftocheading{toc}{}
 
 \newcommand*{\ADDtocEntry}[2]{%
-    \bookmark[dest={#1}]{#2}
-    \addcontentsline{toc}{section}{#2}
+  \bookmark[dest={#1}]{#2}
+  \addcontentsline{toc}{section}{#2}
 }
 
 % ---
@@ -81,12 +81,12 @@
 % motivational letter
 
 \newenvironment{motivletter}[2]{%
-    \phantomsection%
-    \label{motivletter}
-    \ADDtocEntry{page.\getpagerefnumber{motivletter}}{#1}%
-    \begin{letter}{#2}
-        }{%
-    \end{letter}
+  \phantomsection%
+  \label{motivletter}
+  \ADDtocEntry{page.\getpagerefnumber{motivletter}}{#1}%
+  \begin{letter}{#2}
+    }{%
+  \end{letter}
 }
 
 % ---
@@ -94,17 +94,17 @@
 % cv business
 
 \newenvironment{cv}[1][<cvname>]{%
-    \phantomsection%
-    \label{cv}
-    \ADDtocEntry{page.\getpagerefnumber{cv}}{#1}%
-    % Stolen from `\@makelettertitle`
-    \begingroup
-    \setparsizes{\z@}{\z@}{\z@ plus 1fil}\par@updaterelative
-    \centering\Huge\scshape#1\par
-    \endgroup
-    \vskip\baselineskip%
+  \phantomsection%
+  \label{cv}
+  \ADDtocEntry{page.\getpagerefnumber{cv}}{#1}%
+  % Stolen from `\@makelettertitle`
+  \begingroup
+  \setparsizes{\z@}{\z@}{\z@ plus 1fil}\par@updaterelative
+  \centering\Huge\scshape#1\par
+  \endgroup
+  \vskip\baselineskip%
 }{%
-    \pagebreak[4]%
+  \pagebreak[4]%
 }
 
 % A cv is divided into blocks (`\cvblocks`):
@@ -113,30 +113,30 @@
 
 \newlist{cvlist}{itemize}{1}
 \setlist[cvlist]{%
-    font={\scshape\bfseries},%
-    leftmargin={0.33\textwidth},%
-    rightmargin={0pt},%
-    itemsep={5pt},%
-    labelsep={45pt},%
-    topsep={8pt},%
-    labelwidth={20pt},%
-    parsep={0pt},%
+  font={\scshape\bfseries},%
+  leftmargin={0.33\textwidth},%
+  rightmargin={0pt},%
+  itemsep={5pt},%
+  labelsep={45pt},%
+  topsep={8pt},%
+  labelwidth={20pt},%
+  parsep={0pt},%
 }
 
 \newenvironment{cvblock}[2]{%
-    % Penalties found via try-and-error ...
-    % unknown if this is optimal in all situations
-    \penalty-9000\par\cvlist\raggedright\item[{#2}]{\Large\scshape #1}{\vskip 11pt}%
+  % Penalties found via try-and-error ...
+  % unknown if this is optimal in all situations
+  \penalty-9000\par\cvlist\raggedright\item[{#2}]{\Large\scshape #1}{\vskip 11pt}%
 }{%
-    \endcvlist\ignorespacesafterend\penalty-9000%
+  \endcvlist\ignorespacesafterend\penalty-9000%
 }
 
 \newcommand*{\timespan}[4]{%
-    \ifx\relax#3\relax%
-        {#1-#2}\space--\space{\phantom{0000-00}}%
-    \else%
-        {#1-#2}\space--\space{#3-#4}%
-    \fi
+  \ifx\relax#3\relax%
+    {#1-#2}\space--\space{\phantom{0000-00}}%
+  \else%
+    {#1-#2}\space--\space{#3-#4}%
+  \fi
 }
 
 \newcommand{\cvitem}[3]{%
@@ -172,9 +172,9 @@
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabularx}{\linewidth}{R L}
-    \usekomavar{fromstreet}                           & \usekomavar{fromzip}                          \\
-    \href{mailto:\KOMAfromemail}{\KOMAfromemail}      & \telref{\KOMAfrommobilephone}                 \\
-    \href{https:\KOMAfromlinkedin}{\KOMAfromlinkedin} & \href{https:\KOMAfromgithub}{\KOMAfromgithub}
+  \usekomavar{fromstreet}                           & \usekomavar{fromzip}                          \\
+  \href{mailto:\KOMAfromemail}{\KOMAfromemail}      & \telref{\KOMAfrommobilephone}                 \\
+  \href{https:\KOMAfromlinkedin}{\KOMAfromlinkedin} & \href{https:\KOMAfromgithub}{\KOMAfromgithub}
 \end{tabularx}
 }
 }

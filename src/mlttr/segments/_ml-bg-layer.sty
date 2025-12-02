@@ -20,12 +20,12 @@
 \RequirePackage{kvoptions}
 
 \SetupKeyvalOptions{%
-    family = my,%
-    prefix = my@,%
+  family = my,%
+  prefix = my@,%
 }
 
 \newcommand*{\mybglayersetup}[1]{%
-    \setkeys{my}{#1}%
+  \setkeys{my}{#1}%
 }
 
 \DeclareStringOption[0pt]{yshiftathead}
@@ -62,90 +62,90 @@
 \newlength{\borderlinewidth@boundary}
 
 \def\print@bg@layer{%
-    \begin{tikzpicture}[overlay,remember picture]
-        % Rounds pagecorners with respect to the layer
-        \clip[
-            rounded corners = \clipradius@edges,%
-        ]
-        (current page.north west) --
-        (current page.north east) --
-        (current page.south east) --
-        (current page.south west) --
-        cycle;
+  \begin{tikzpicture}[overlay,remember picture]
+    % Rounds pagecorners with respect to the layer
+    \clip[
+      rounded corners = \clipradius@edges,%
+    ]
+    (current page.north west) --
+    (current page.north east) --
+    (current page.south east) --
+    (current page.south west) --
+    cycle;
 
-        % Header part of bg layer
-        \fill[
-            layerfillcolor,%
-            % shading = axis,%
-            % left color = layerfillcolor, %
-            % right color = white,
-            % shading angle = 0,
-        ]
-        (current page.north west) --
-        (current page.north east) --
-        ([yshift = \yshift@head]current page.north east|-current page text area.north east) --
-        ([yshift = \yshift@head]current page.north west|-current page text area.north west) --
-        cycle;
+    % Header part of bg layer
+    \fill[
+      layerfillcolor,%
+      % shading = axis,%
+      % left color = layerfillcolor, %
+      % right color = white,
+      % shading angle = 0,
+    ]
+    (current page.north west) --
+    (current page.north east) --
+    ([yshift = \yshift@head]current page.north east|-current page text area.north east) --
+    ([yshift = \yshift@head]current page.north west|-current page text area.north west) --
+    cycle;
 
-        % Footer part of bg layer
-        \fill[
-            layerfillcolor,%
-            % shading = axis,%
-            % left color = layerfillcolor, %
-            % right color = white,
-            % shading angle = 180,
-        ]
-        ([yshift = \yshift@foot]current page.south west|-current page text area.south west) --
-        ([yshift = \yshift@foot]current page.south east|-current page text area.south east) --
-        (current page.south east) --
-        (current page.south west) --
-        cycle;
+    % Footer part of bg layer
+    \fill[
+      layerfillcolor,%
+      % shading = axis,%
+      % left color = layerfillcolor, %
+      % right color = white,
+      % shading angle = 180,
+    ]
+    ([yshift = \yshift@foot]current page.south west|-current page text area.south west) --
+    ([yshift = \yshift@foot]current page.south east|-current page text area.south east) --
+    (current page.south east) --
+    (current page.south west) --
+    cycle;
 
-        % Border around the page
-        \ifdim\borderlinewidth@boundary>0pt
-            \draw[%
-                layerfillcolor,%
-                rounded corners = \clipradius@edges,%
-                line width = \borderlinewidth@boundary,%
-            ]
-            (current page.north west) --
-            (current page.north east) --
-            (current page.south east) --
-            (current page.south west) --
-            cycle;
-        \else\fi
+    % Border around the page
+    \ifdim\borderlinewidth@boundary>0pt
+      \draw[%
+        layerfillcolor,%
+        rounded corners = \clipradius@edges,%
+        line width = \borderlinewidth@boundary,%
+      ]
+      (current page.north west) --
+      (current page.north east) --
+      (current page.south east) --
+      (current page.south west) --
+      cycle;
+    \else\fi
 
-        % % Borderline for the header part
-        % \ifdim\borderlinewidth@head>0pt
-        %     \draw[%
-        %         layerdrawcolor,%
-        %         line width = \borderlinewidth@head,%
-        %     ]
-        %         ([yshift = \yshift@head]current page.north west|-current page text area.north west) --
-        %         ([yshift = \yshift@head]current page.north east|-current page text area.north east);
-        % \else\fi
+    % % Borderline for the header part
+    % \ifdim\borderlinewidth@head>0pt
+    %     \draw[%
+    %         layerdrawcolor,%
+    %         line width = \borderlinewidth@head,%
+    %     ]
+    %         ([yshift = \yshift@head]current page.north west|-current page text area.north west) --
+    %         ([yshift = \yshift@head]current page.north east|-current page text area.north east);
+    % \else\fi
 
-        % % Borderline for the footer part
-        % \ifdim\borderlinewidth@foot>0pt
-        %     \draw[
-        %         layerdrawcolor,%
-        %         line width = \borderlinewidth@foot,%
-        %     ]
-        %         ([yshift = \yshift@foot]current page.south west|-current page text area.south west) --
-        %         ([yshift = \yshift@foot]current page.south east|-current page text area.south east);
-        % \else\fi
-    \end{tikzpicture}
+    % % Borderline for the footer part
+    % \ifdim\borderlinewidth@foot>0pt
+    %     \draw[
+    %         layerdrawcolor,%
+    %         line width = \borderlinewidth@foot,%
+    %     ]
+    %         ([yshift = \yshift@foot]current page.south west|-current page text area.south west) --
+    %         ([yshift = \yshift@foot]current page.south east|-current page text area.south east);
+    % \else\fi
+  \end{tikzpicture}
 }
 
 \AtBeginDocument{%
-    \setlength{\yshift@head}{\my@yshiftathead}%
-    \setlength{\yshift@foot}{\my@yshiftatfoot}%
-    \setlength{\borderlinewidth@head}{\my@borderlinewidthathead}%
-    \setlength{\borderlinewidth@foot}{\my@borderlinewidthatfoot}%
-    \setlength{\clipradius@edges}{\my@clipradiusatedges}%
-    \setlength{\borderlinewidth@boundary}{\my@borderlinewidthatboundary}%
-    \definecolor{layerfillcolor}{named}{\my@layerfillcolor}%
-    \definecolor{layerdrawcolor}{named}{\my@layerdrawcolor}%
+  \setlength{\yshift@head}{\my@yshiftathead}%
+  \setlength{\yshift@foot}{\my@yshiftatfoot}%
+  \setlength{\borderlinewidth@head}{\my@borderlinewidthathead}%
+  \setlength{\borderlinewidth@foot}{\my@borderlinewidthatfoot}%
+  \setlength{\clipradius@edges}{\my@clipradiusatedges}%
+  \setlength{\borderlinewidth@boundary}{\my@borderlinewidthatboundary}%
+  \definecolor{layerfillcolor}{named}{\my@layerfillcolor}%
+  \definecolor{layerdrawcolor}{named}{\my@layerdrawcolor}%
 }
 
 \AddToHook{shipout/background}{\iflayer@domain\print@bg@layer\else\fi}

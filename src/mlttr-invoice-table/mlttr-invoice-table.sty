@@ -5,7 +5,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 \ProvidesPackage{mlttr-invoice-table}[%
-    2019/01/01 v0.0-dev Invoice Table for Letters%
+  2019/01/01 v0.0-dev Invoice Table for Letters%
 ]
 
 % Very helpful references for creating this package:
@@ -39,70 +39,70 @@
 \DTLnewdb{invoicetable}
 
 \newcommand{\invoiceitem}[3]{%
-    \DTLnewrow{invoicetable}
-    \DTLnewdbentry{invoicetable}{description}{#1}
-    \DTLnewdbentry{invoicetable}{quantity}{#2}
-    \DTLnewdbentry{invoicetable}{unitprice}{#3}
-    \begingroup
-    \dtlexpandnewvalue
-    \FPeval\fpresult{round(#2*#3)(2)}
-    \DTLnewdbentry{invoicetable}{totalprice}{\fpresult}
-    \endgroup
+  \DTLnewrow{invoicetable}
+  \DTLnewdbentry{invoicetable}{description}{#1}
+  \DTLnewdbentry{invoicetable}{quantity}{#2}
+  \DTLnewdbentry{invoicetable}{unitprice}{#3}
+  \begingroup
+  \dtlexpandnewvalue
+  \FPeval\fpresult{round(#2*#3)(2)}
+  \DTLnewdbentry{invoicetable}{totalprice}{\fpresult}
+  \endgroup
 }
 
 \newcommand*{\VATrate}{}
 
 \newcommand*{\prepare@table}[1]{%
-    \renewcommand*{\VATrate}{#1}%
-    \DTLcleardb{invoicetable}%
+  \renewcommand*{\VATrate}{#1}%
+  \DTLcleardb{invoicetable}%
 }
 
 \newcommand*{\compute@cumulativesum}{%
-    \def\cumulativesum{0}%
-    \DTLforeach*{invoicetable}{\totalprice=totalprice}{\FPeval\cumulativesum{\cumulativesum+\totalprice}}%
-    \xdef\cumulativesum{\cumulativesum}%
+  \def\cumulativesum{0}%
+  \DTLforeach*{invoicetable}{\totalprice=totalprice}{\FPeval\cumulativesum{\cumulativesum+\totalprice}}%
+  \xdef\cumulativesum{\cumulativesum}%
 }
 
 \newcommand*{\compute@totalsum}{%
-    \FPeval\VAT{round(\VATrate*\cumulativesum/100)(2)}%
-    \FPeval\totalsum{round(\cumulativesum+\VAT)(2)}%
-    \xdef\totalsum{\totalsum}%
+  \FPeval\VAT{round(\VATrate*\cumulativesum/100)(2)}%
+  \FPeval\totalsum{round(\cumulativesum+\VAT)(2)}%
+  \xdef\totalsum{\totalsum}%
 }
 
 \def\Totalsum{\numprint{\totalsum}\,€}
 
 \newcommand{\print@table}{%
-    \par\centering
-    \begin{tabularx}{\textwidth}{Xrrr}
-        \toprule
-        Bezeichnung                   & Anzahl                                          & Einzelpreis [€]       & Gesamtpreis [€]
-        \DTLforeach*{invoicetable}{%
-            \DESCRIPTION=description,\QUANTITY=quantity,\UNITPRICE=unitprice,\TOTALPRICE=totalprice%
-        }{%
-        \DTLiffirstrow{                                                                                                                     \\\midrule}{\\}%
-        \DESCRIPTION                  & \npnoround\numprint{\QUANTITY}\nprounddigits{2} & \numprint{\UNITPRICE} & \numprint{\TOTALPRICE}    %
-        }                                                                                                                                   \\
-        \midrule
-        \if \VATrate 0 \else
-        Zwischensumme                 &                                                 &                       & \numprint{\cumulativesum} \\
-        Mehrwertsteuer (\VATrate\,\%) &                                                 &                       & \numprint{\VAT}           \\
-            \midrule
-        \fi
-        Summe                         &                                                 &                       & \numprint{\totalsum}      \\
-        \bottomrule
-    \end{tabularx}
-    \par
+  \par\centering
+  \begin{tabularx}{\textwidth}{Xrrr}
+    \toprule
+    Bezeichnung                   & Anzahl                                          & Einzelpreis [€]       & Gesamtpreis [€]
+    \DTLforeach*{invoicetable}{%
+      \DESCRIPTION=description,\QUANTITY=quantity,\UNITPRICE=unitprice,\TOTALPRICE=totalprice%
+    }{%
+    \DTLiffirstrow{                                                                                                                     \\\midrule}{\\}%
+    \DESCRIPTION                  & \npnoround\numprint{\QUANTITY}\nprounddigits{2} & \numprint{\UNITPRICE} & \numprint{\TOTALPRICE}    %
+    }                                                                                                                                   \\
+    \midrule
+    \if \VATrate 0 \else
+    Zwischensumme                 &                                                 &                       & \numprint{\cumulativesum} \\
+    Mehrwertsteuer (\VATrate\,\%) &                                                 &                       & \numprint{\VAT}           \\
+      \midrule
+    \fi
+    Summe                         &                                                 &                       & \numprint{\totalsum}      \\
+    \bottomrule
+  \end{tabularx}
+  \par
 }
 
 
 \newenvironment{invoicetable}[1]{%
-    \prepare@table{#1}
+  \prepare@table{#1}
 }{%
-    \compute@cumulativesum%
-    \compute@totalsum%
-    \print@table%
+  \compute@cumulativesum%
+  \compute@totalsum%
+  \print@table%
 }
 
 \newcommand{\printbankdata}{%
-    {\centering\usekomavar{bankdata}\par}%
+  {\centering\usekomavar{bankdata}\par}%
 }
