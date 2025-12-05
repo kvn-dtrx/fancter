@@ -3,18 +3,15 @@ gitignore:
       - "base.ignore"
       - "latex.ignore"
     target: ".gitignore"
-
 latexmkrc:
   - sources:
       - "base.pl"
       - "pdflatex.pl"
     target: "examples/.latexmkrc"
-
 license:
   - sources:
       - "mit.txt"
     target: "license.txt"
-
 makefile:
   - sources:
       - "latex-package.mk"
