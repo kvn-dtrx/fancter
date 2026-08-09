@@ -1,4 +1,10 @@
-# Base
+# dia:begin gitignore/base.ignore
+
+# ---
+# title: Base gitignore patterns
+# ---
+
+# ---
 
 # macOS
 ._*
@@ -7,8 +13,8 @@
 .LSOverride
 .Spotlight-V100
 .Trashes
-* 2
-* 2.*
+* [0-9]
+* [0-9].*
 * copy
 * copy.*
 *.nosync/
@@ -26,6 +32,8 @@ Thumbs.db
 
 # Logs and temporary files
 *.bak
+*.bak[0-9]*
+*.bkp
 *.log
 *.swo
 *.swp
@@ -34,11 +42,25 @@ log/
 logs/
 tmp/
 
+# Local environment variables
+.env
+.env.*
+!.env.example
+.envrc
+.envrc.*
+!.envrc.example
+
+# dia:end
+
+# dia:begin gitignore/latex.ignore
+
+# ---
+# title: LaTeX gitignore patterns
 # ---
 
-# LaTeX
+# ---
 
-## Core latex/pdflatex auxiliary files
+# Core latex/pdflatex auxiliary files
 .*.lb
 *.aux
 *.cb
@@ -52,10 +74,16 @@ tmp/
 *.out
 *.toc
 
-## Generated if empty string is given at "Please type another file name for output:"
+# Generated if empty string is given at "Please type another file name for output:"
+.dvi
 .pdf
+.ps
 
-## Bibliography auxiliary files (bibtex/biblatex/biber)
+# Archaic output formats
+*.dvi
+*.ps
+
+# Bibliography auxiliary files (bibtex/biblatex/biber)
 *.bbl
 *.bbl-SAVE-ERROR
 *.bcf
@@ -65,7 +93,7 @@ tmp/
 *-blx.bib
 *.run.xml
 
-## Build tool auxiliary files
+# Build tool auxiliary files
 *.fdb_latexmk
 *.synctex
 *.synctex(busy)
@@ -75,6 +103,10 @@ tmp/
 # Build directory
 **/build/*
 !**/build/.gitkeep
+
+# Beamer
+*.nav
+*.snm
 
 # amsthm
 *.thm
@@ -99,3 +131,6 @@ tmp/
 *.idx
 *.ilg
 *.ind
+
+# dia:end
+

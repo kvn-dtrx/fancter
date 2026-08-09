@@ -1,0 +1,180 @@
+% ---
+% title: Candidature Macros for Letters
+% ---
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{mlttr-candidature}[%
+    2019/01/01 v0.0-dev Candidature Macros for Letters%
+]
+
+% Very helpful references for creating this package:
+% [Rechnungen schreiben mit KOMA-Script](https://texwelt.de/fragen/5693)
+% [Rechnungsposten um pauschale Einträge erweitern](https://texwelt.de/fragen/13919)
+
+% ---
+
+% enumitem – Control layout of itemize, enumerate, description.
+\RequirePackage{enumitem}
+
+% tabularx – Tabulars with adjustable-width columns.
+\RequirePackage{tabularx}
+
+% array – Extending the array and tabular environments.
+\RequirePackage{array}
+
+% cover sheet with toc
+
+\newenvironment{coversheet}[1]{%
+    \phantomsection%
+    \label{coversheet}%
+    % Simple bookmark and no `\addcontentsline` for obvious reasons
+    % (This would be a fixed point of the document!)
+    \bookmark[%
+        dest={page.\getpagerefnumber{coversheet}},%
+        level={section},%
+    ]{#1}
+}{%
+    \begin{tabular}[t]{l@{\hskip 5pt}r@{\hskip 11pt}}
+        \begin{minipage}{0.5\linewidth} \tableofcontents \end{minipage} & {} \\
+    \end{tabular}\ignorespacesafterend%
+
+    \pagebreak[4]%
+}
+
+\newcommand{\cover}[4]{%
+    \begin{center}%
+        \topskip0pt%
+        \vspace*{\fill}%
+        \scshape
+        {\large #1} \\[1.0cm]
+        {\LARGE #2} \\[1.0cm]
+        {\large #3} \\[1.0cm]
+        {\LARGE #4} \\[1.0cm]
+        {\usekomavar{konterfei}} \\[1.0cm]
+        \vspace*{\fill}%
+    \end{center}
+}
+
+% ---
+
+% `\addcontentsline` should not set bookmarks
+\xpatchcmd{\addcontentsline}{%
+    \Hy@writebookmark{\csname the#2\endcsname}%
+    {#3}%
+    {\@currentHref}%
+    {\Hy@toclevel}%
+    {#1}%
+}{}{}{}
+
+% No title for toc
+\deftocheading{toc}{}
+
+\newcommand*{\ADDtocEntry}[2]{%
+    \bookmark[dest={#1}]{#2}
+    \addcontentsline{toc}{section}{#2}
+}
+
+% ---
+
+% motivational letter
+
+\newenvironment{motivletter}[2]{%
+    \phantomsection%
+    \label{motivletter}
+    \ADDtocEntry{page.\getpagerefnumber{motivletter}}{#1}%
+    \begin{letter}{#2}
+        }{%
+    \end{letter}
+}
+
+% ---
+
+% cv business
+
+\newenvironment{cv}[1][<cvname>]{%
+    \phantomsection%
+    \label{cv}
+    \ADDtocEntry{page.\getpagerefnumber{cv}}{#1}%
+    % Stolen from `\@makelettertitle`
+    \begingroup
+    \setparsizes{\z@}{\z@}{\z@ plus 1fil}\par@updaterelative
+    \centering\Huge\scshape#1\par
+    \endgroup
+    \vskip\baselineskip%
+}{%
+    \pagebreak[4]%
+}
+
+% A cv is divided into blocks (`\cvblocks`):
+% personal data, the "true" cv, skills, publications ...
+% Every block itself is a list environment (`\cvlist`)
+
+\newlist{cvlist}{itemize}{1}
+\setlist[cvlist]{%
+    font={\scshape\bfseries},%
+    leftmargin={0.33\textwidth},%
+    rightmargin={0pt},%
+    itemsep={5pt},%
+    labelsep={45pt},%
+    topsep={8pt},%
+    labelwidth={20pt},%
+    parsep={0pt},%
+}
+
+\newenvironment{cvblock}[2]{%
+    % Penalties found via try-and-error ...
+    % unknown if this is optimal in all situations
+    \penalty-9000\par\cvlist\raggedright\item[{#2}]{\Large\scshape #1}{\vskip 11pt}%
+}{%
+    \endcvlist\ignorespacesafterend\penalty-9000%
+}
+
+\newcommand*{\timespan}[4]{%
+    \ifx\relax#3\relax%
+        {#1-#2}\space--\space{\phantom{0000-00}}%
+    \else%
+        {#1-#2}\space--\space{#3-#4}%
+    \fi
+}
+
+\newcommand{\cvitem}[3]{%
+\item[#1]%
+\parbox[t][\height][t]{\linewidth}{%
+\raggedright%
+\ifx\relax#2\relax\else{\bfseries #2}\\\fi%
+{#3}\\%
+}%
+}
+
+% ---
+
+% Central header
+\chead*{
+% Box in box in order to avoid a
+% `\headheight to low` warning
+\raisebox{0pt}[0pt][0pt]{%
+\parbox[b][2.5cm][t]{\linewidth}{
+\centering%
+{\KOMAoption{fontsize}{20pt}\bfseries\scshape%
+{\color{mainaccentcolor}\usekomavar{fromgivenname}}~%
+{\color{otheraccentcolor}\usekomavar{fromlastname}}%
+}\\[0.5cm]
+\hypersetup{urlcolor=otheraccentcolor}
+\usekomavar[\edef\KOMAfromemail]{fromemail}%
+\usekomavar[\edef\KOMAfrommobilephone]{frommobilephone}%
+\usekomavar[\edef\KOMAfromlinkedin]{fromlinkedin}%
+\usekomavar[\edef\KOMAfromgithub]{fromgithub}%
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{R L}
+    \usekomavar{fromstreet}                           & \usekomavar{fromzip}                          \\
+    \href{mailto:\KOMAfromemail}{\KOMAfromemail}      & \telref{\KOMAfrommobilephone}                 \\
+    \href{https:\KOMAfromlinkedin}{\KOMAfromlinkedin} & \href{https:\KOMAfromgithub}{\KOMAfromgithub}
+\end{tabularx}
+}
+}
+}

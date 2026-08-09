@@ -1,7 +1,13 @@
 project:
-  name: My Letter
-  description: A custom LaTeX letter class
-  github: https://github.com/kvn-dtrx/my-letter
+  id: e5d7358d-3591-4379-a08b-e7505ac84449
+  name: Fancter
+  description: >-
+    A custom LaTeX letter class
   authors:
     - name: Kvn Dtrx
       mail: kvn.dtrx+git@protonmail.ch
+  license: null
+forges:
+  github:
+    url: https://github.com/kvn-dtrx/fancter
+    visibility: public

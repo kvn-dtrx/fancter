@@ -1,12 +1,12 @@
 % ---
-% description: A custom letter class.
+% title: A custom letter class
 % author: [N.N.]()
 % ---
 
 \NeedsTeXFormat{LaTeX2e}
 
 \ProvidesClass{my-letter}[
-  2021-06-01 v0.0-dev A custom letter class.%
+    2021-06-01 v0.0-dev A custom letter class.%
 ]
 
 % ---
@@ -15,8 +15,8 @@
 \RequirePackage{kvoptions}
 
 \SetupKeyvalOptions{%
-  family={my},%
-  prefix={my@},%
+    family={my},%
+    prefix={my@},%
 }
 
 \DeclareStringOption[standard]{alignment}
@@ -49,8 +49,8 @@
 \ProcessKeyvalOptions*
 
 \LoadClass[%
-  fontsize={11pt},%
-  parskip={half},%
+    fontsize={11pt},%
+    parskip={half},%
 ]{scrartcl}
 
 % scrletter is KOMA's letter package (not class)
@@ -63,9 +63,9 @@
 
 % Passing the option `mainlanguage` to `babel`
 \PassOptionsToPackage{%
-  main={\my@mainlanguage},%
-  ngerman,%
-  english,%
+    main={\my@mainlanguage},%
+    ngerman,%
+    english,%
 }{babel}
 
 % babel – Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX.
@@ -87,16 +87,16 @@
 
 % Font features.
 \defaultfontfeatures{
-  % Enables classic TeX-style ligatures:
-  % - `fi', `fl' etc. with ligature.
-  % - `...` to …, `--` to `–` etc.
-  Ligatures=TeX,%
-  % Use old-style (text) digits with varying heights.
-  Numbers=OldStyle,%
-  % NOTE: Does not work for Libertinus
-  % % Enables contextual alternate glyphs such
-  % % as the trailing sigma in Ancient Greek.
-  % Contextuals=All,%
+    % Enables classic TeX-style ligatures:
+    % - `fi', `fl' etc. with ligature.
+    % - `...` to …, `--` to `–` etc.
+    Ligatures=TeX,%
+    % Use old-style (text) digits with varying heights.
+    Numbers=OldStyle,%
+    % NOTE: Does not work for Libertinus
+    % % Enables contextual alternate glyphs such
+    % % as the trailing sigma in Ancient Greek.
+    % Contextuals=All,%
 }
 
 % Sets default fonts.
@@ -107,9 +107,9 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 \RequirePackage[%
-  protrusion={false},%
-  expansion={true},%
-  final,%
+    protrusion={false},%
+    expansion={true},%
+    final,%
 ]{microtype}
 
 % ---
@@ -117,10 +117,10 @@
 \RequirePackage{xcolor}
 
 \AtBeginDocument{%
-  \colorlet{mainaccentcolor}{\my@mainaccentcolor}
-  \colorlet{layercolor}{\my@layercolor}
-  \colorlet{otheraccentcolor}{\my@otheraccentcolor}
-  \colorlet{linkcolor}{\my@linkcolor}
+    \colorlet{mainaccentcolor}{\my@mainaccentcolor}
+    \colorlet{layercolor}{\my@layercolor}
+    \colorlet{otheraccentcolor}{\my@otheraccentcolor}
+    \colorlet{linkcolor}{\my@linkcolor}
 }
 
 % ---
@@ -139,50 +139,50 @@
 % phonenumbers – Typesetting telephone numbers with LaTeX.
 \RequirePackage{phonenumbers}
 \setphonenumbers{%
-  foreign,%
-  foreign-area-code-sep={space},%
+    foreign,%
+    foreign-area-code-sep={space},%
 }
 
 \def\telref#1{\href{tel:#1}{\phonenumber{#1}}}
 
 % hyperref
 \RequirePackage[%
-  linktoc={all},%
-  colorlinks={true},%
-  linkcolor={linkcolor},%
-  citecolor={linkcolor},%
-  urlcolor={linkcolor},%
-  anchorcolor={linkcolor},%
-  pdfstartview={Fit},%
-  % Acrobat Reader toolbar
-  pdftoolbar={false},
-  % Acrobat Reader menubar
-  pdfmenubar={true},
-  pdfpagemode={UseOutlines},%
-  pdfcreator={pdfLaTeX},%
-  pdfpagelayout={OneColumn},%
-  pdfpagelabels={true},%
-  % pageanchor={false},%
-  % numbering for bookmarks
-  bookmarksnumbered={false},
-  bookmarksopen={true},%
+    linktoc={all},%
+    colorlinks={true},%
+    linkcolor={linkcolor},%
+    citecolor={linkcolor},%
+    urlcolor={linkcolor},%
+    anchorcolor={linkcolor},%
+    pdfstartview={Fit},%
+    % Acrobat Reader toolbar
+    pdftoolbar={false},
+    % Acrobat Reader menubar
+    pdfmenubar={true},
+    pdfpagemode={UseOutlines},%
+    pdfcreator={pdfLaTeX},%
+    pdfpagelayout={OneColumn},%
+    pdfpagelabels={true},%
+    % pageanchor={false},%
+    % numbering for bookmarks
+    bookmarksnumbered={false},
+    bookmarksopen={true},%
 ]{hyperref}
 
 % A setter for pdfmetadata, also compatible
 % with atomic komavars. Found at:
 % [Fill pdfinfo metadata with \usekomavar{} not working](https://tex.stackexchange.com/questions/458679)
 \newcommand\setpdfinfo[2]{%
-  \hypersetup{pdfinfo={#1={#2}}}
+    \hypersetup{pdfinfo={#1={#2}}}
 }
 
 % Sets pdf metadata
 \AtBeginDocument{
-  \usekomavar[\setpdfinfo{Title}]{subject}
-  \usekomavar[\setpdfinfo{Author}]{fromname}
-  \usekomavar[\setpdfinfo{Subject}]{description}
-  \usekomavar[\setpdfinfo{Keywords}]{keywords}
-  % \setpdfinfo{CreationDate}{D:20201114140000} % not yet implemented
-  % \setpdfinfo{ModDate}{D:20171114140000} % not yet implemented
+    \usekomavar[\setpdfinfo{Title}]{subject}
+    \usekomavar[\setpdfinfo{Author}]{fromname}
+    \usekomavar[\setpdfinfo{Subject}]{description}
+    \usekomavar[\setpdfinfo{Keywords}]{keywords}
+    % \setpdfinfo{CreationDate}{D:20201114140000} % not yet implemented
+    % \setpdfinfo{ModDate}{D:20171114140000} % not yet implemented
 }
 
 % Makes all page anchors to be displayed in full page mode,
@@ -191,10 +191,10 @@
 % [Linking a text to a page (by page number)](https://tex.stackexchange.com/questions/19412)
 \let\old@Hy@EveryPageAnchor\Hy@EveryPageAnchor
 \def\Hy@EveryPageAnchor{%
-  \begingroup
-  \hypersetup{pdfview=Fit}%
-  \old@Hy@EveryPageAnchor
-  \endgroup
+    \begingroup
+    \hypersetup{pdfview=Fit}%
+    \old@Hy@EveryPageAnchor
+    \endgroup
 }
 
 % bookmark – A new bookmark (outline) organization for hyperref.
@@ -231,12 +231,12 @@
 \ExplSyntaxOn
 \str_case:nnF { \my@alignment }
 {
-  % Usual "indentation" of text body.
-  { standard }    { \geometry{inner=\StandOM, outer=\StandOM, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
-    % Aligns body to head.
-    { bodytohead }  { \geometry{inner=\toaddrhpos, outer=\toaddrhpos, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
-    % Aligns head to body (in hard conflict with DIN 5008!).
-    { headtobody }  { \geometry{inner=\StandOM, outer=\StandOM, top=1.414\StandOM, bottom=1.414\StandOM} \setplength{toaddrhpos}{\dimexpr\oddsidemargin+1in} \my@alignment@specifiedtrue }
+    % Usual "indentation" of text body.
+    { standard }    { \geometry{inner=\StandOM, outer=\StandOM, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
+        % Aligns body to head.
+        { bodytohead }  { \geometry{inner=\toaddrhpos, outer=\toaddrhpos, top=1.9\toaddrhpos, bottom=1.9\toaddrhpos} \my@alignment@specifiedtrue }
+        % Aligns head to body (in hard conflict with DIN 5008!).
+        { headtobody }  { \geometry{inner=\StandOM, outer=\StandOM, top=1.414\StandOM, bottom=1.414\StandOM} \setplength{toaddrhpos}{\dimexpr\oddsidemargin+1in} \my@alignment@specifiedtrue }
 }
 { }
 \ExplSyntaxOff
@@ -267,12 +267,12 @@
 % If no (valid) alignment option is specified,
 % set a default variant.
 \ifmy@alignment@specified\else
-  \geometry{%
-    inner={\StandOM},%
-    outer={\StandOM},%
-    top={1.9\toaddrhpos},%
-    bottom=1.9\toaddrhpos %
-  }
+    \geometry{%
+        inner={\StandOM},%
+        outer={\StandOM},%
+        top={1.9\toaddrhpos},%
+        bottom=1.9\toaddrhpos %
+    }
 \fi
 
 % ---
@@ -339,12 +339,12 @@
 
 % Activates auxiliary rules when wished.
 \ifmy@visualize%
-  \LoadLetterOption{visualize}
-  \showfields{%
-    address,%
-    location,%
-    refline,%
-  }
+    \LoadLetterOption{visualize}
+    \showfields{%
+        address,%
+        location,%
+        refline,%
+    }
 \else\fi%
 
 % ---
@@ -352,9 +352,9 @@
 % Minor adaptions when there is no pagecounter
 % reset by letter environments
 \ifmy@counterresetbyletter\relax\else
-  \xpatchcmd{\letter}{\setcounter{page}{\@ne}}{}{}{}
-  \xpatchcmd{\letter}{\setcounter{footnote}{0}}{}{}{}
-  \cfoot*{\thepage{}\,{\ensuremath{|}}\,\pageref*{LastPage}}
+    \xpatchcmd{\letter}{\setcounter{page}{\@ne}}{}{}{}
+    \xpatchcmd{\letter}{\setcounter{footnote}{0}}{}{}{}
+    \cfoot*{\thepage{}\,{\ensuremath{|}}\,\pageref*{LastPage}}
 \fi
 
 % ---
@@ -378,21 +378,21 @@
 
 % Further settings
 \KOMAoptions{
-  addrfield=topaligned,%
-  backaddress=false,%
-  foldmarks=false,%
-  % fromalign=center,%
-  % fromemail=true,%
-  % fromlogo=false,%
-  % frommobilephone=false,%
-  % fromphone=false,%
-  % fromrule=afteraddress,%
-  % fromurl=false,%
-  % locfield=wide,%
-  % numericaldate=true,%
-  % priority=false,%
-  % subject={beforeopening,left},%
-  refline=nodate,%
+    addrfield=topaligned,%
+    backaddress=false,%
+    foldmarks=false,%
+    % fromalign=center,%
+    % fromemail=true,%
+    % fromlogo=false,%
+    % frommobilephone=false,%
+    % fromphone=false,%
+    % fromrule=afteraddress,%
+    % fromurl=false,%
+    % locfield=wide,%
+    % numericaldate=true,%
+    % priority=false,%
+    % subject={beforeopening,left},%
+    refline=nodate,%
 }
 
 % Some scrlttr2 pseudolengths
@@ -414,14 +414,14 @@
 % ml-bg-layer for the background layer
 \RequirePackage{_ml-bg-layer}
 \mybglayersetup{%
-  yshiftathead={15pt},%
-  yshiftatfoot={-30pt},%
-  borderlinewidthathead={0pt},%
-  borderlinewidthatfoot={0pt},%
-  clipradiusatedges={0pt},%
-  borderlinewidthatboundary={0pt},%
-  layerfillcolor={layercolor},%
-  layerdrawcolor={mainaccentcolor},%
+    yshiftathead={15pt},%
+    yshiftatfoot={-30pt},%
+    borderlinewidthathead={0pt},%
+    borderlinewidthatfoot={0pt},%
+    clipradiusatedges={0pt},%
+    borderlinewidthatboundary={0pt},%
+    layerfillcolor={layercolor},%
+    layerdrawcolor={mainaccentcolor},%
 }
 
 % ---
@@ -429,19 +429,19 @@
 % Prints address of sender in the locfield
 
 \def\print@refs{%
-  \Ifkomavarempty{yourref}%
-  {\Ifkomavarempty{myref}{}{\usekomavar{myref}}}%
-  {\Ifkomavarempty{myref}{\usekomavar{yourref}}{\usekomavar{myref}\\\usekomavar{yourref}}}%
+    \Ifkomavarempty{yourref}%
+    {\Ifkomavarempty{myref}{}{\usekomavar{myref}}}%
+    {\Ifkomavarempty{myref}{\usekomavar{yourref}}{\usekomavar{myref}\\\usekomavar{yourref}}}%
 }
 
 \setkomavar{location}{%
-  \raggedleft%
-  % How to accomplish this without guessing
-  % and adapting the height any time
-  \vskip 0.6\useplength{backaddrheight}
-  \usekomavar{date} \\
-  \usekomavar{place} \\
-  \print@refs
+    \raggedleft%
+    % How to accomplish this without guessing
+    % and adapting the height any time
+    \vskip 0.6\useplength{backaddrheight}
+    \usekomavar{date} \\
+    \usekomavar{place} \\
+    \print@refs
 }
 
 % ---
@@ -449,32 +449,32 @@
 % Adds pdf documents as attachments
 
 \newcommand*{\Includepdf}[2]{%
-  \DisableLayer%
-  \includepdf[%
-    % landscape,%
-    pagecommand={%
-        \thispagestyle{empty}%
-      },%
-    delta={0 0},%
-    frame={false},%
-    picturecommand={},%
-    link={true},%
-    nup={1x1},%
-    pages={-},%
-    linkname={#1},%
-    width={\paperwidth},%
-  ]{#2} %
+    \DisableLayer%
+    \includepdf[%
+        % landscape,%
+        pagecommand={%
+                \thispagestyle{empty}%
+            },%
+        delta={0 0},%
+        frame={false},%
+        picturecommand={},%
+        link={true},%
+        nup={1x1},%
+        pages={-},%
+        linkname={#1},%
+        width={\paperwidth},%
+    ]{#2} %
 }
 
 \newcommand*{\SHIPOUTpdfAttachments}{}
 
 \newcommand*{\ADDpdfAttachment}[3]{%
-  \g@addto@macro\SHIPOUTpdfAttachments{%
-    \phantomsection{}
-    \bookmark[dest={#1.1}]{#2}
-    \addcontentsline{toc}{section}{#2}
-    \Includepdf{#1}{#3}
-  }%
+    \g@addto@macro\SHIPOUTpdfAttachments{%
+        \phantomsection{}
+        \bookmark[dest={#1.1}]{#2}
+        \addcontentsline{toc}{section}{#2}
+        \Includepdf{#1}{#3}
+    }%
 }
 
 \xpretocmd{\enddocument}{\SHIPOUTpdfAttachments}{}{}

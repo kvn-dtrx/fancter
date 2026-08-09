@@ -1,4 +1,6 @@
-# My Letter
+# Fancter
+
+Formerly **my-letter** (fancy letter class).
 
 ## Synopsis
 
