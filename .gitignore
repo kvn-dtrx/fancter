@@ -1,10 +1,12 @@
+# ---
+# title: Gitignore for Fancter
+# ---
+
+# ---
+
 # dia:begin gitignore/base.ignore
 
-# ---
-# title: Base gitignore patterns
-# ---
-
-# ---
+# --- Base ---
 
 # macOS
 ._*
@@ -30,7 +32,7 @@ Desktop.ini
 ehthumbs.db
 Thumbs.db
 
-# Logs and temporary files
+# Logs, temporary files, regenerable cache
 *.bak
 *.bak[0-9]*
 *.bkp
@@ -39,26 +41,23 @@ Thumbs.db
 *.swp
 *.tmp
 log/
+.log/
 logs/
+.logs/
 tmp/
+.tmp/
+cache/
+.cache/
 
 # Local environment variables
 .env
 .env.*
-!.env.example
-.envrc
-.envrc.*
-!.envrc.example
 
 # dia:end
 
 # dia:begin gitignore/latex.ignore
 
-# ---
-# title: LaTeX gitignore patterns
-# ---
-
-# ---
+# --- LaTeX ---
 
 # Core latex/pdflatex auxiliary files
 .*.lb
@@ -101,8 +100,7 @@ tmp/
 *.synctex.gz(busy)
 
 # Build directory
-**/build/*
-!**/build/.gitkeep
+**/build/
 
 # Beamer
 *.nav
@@ -133,4 +131,3 @@ tmp/
 *.ind
 
 # dia:end
-

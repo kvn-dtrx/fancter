@@ -4,30 +4,28 @@
 
 # ---
 
-#
-# Convention: just = instantiation builds; make = TEXMF install.
-
-# ---
-
 set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 
-src-dir := "instantiations"
-build-dir := "instantiations/build"
+root := justfile_directory()
+latexmkrc := root / ".latexmkrc"
+examples := root / "examples"
+build-dir := "build"
 
 # Shows available recipes
 default:
     @just --list --unsorted
 
-# Prepare build directory
+# Prepares build directory
 prepare:
     mkdir -p {{build-dir}}
 
-# Compile all instantiations
+# Compiles all examples/<slug>/main.tex into build/<slug>.pdf
 compile: prepare
     #!/usr/bin/env bash
-    cd "{{src-dir}}"
-    for tex in *.tex; do
-        latexmk -pdflatex -outdir=build "$tex"
+    shopt -s nullglob
+    for main in "{{examples}}"/*/main.tex; do
+        slug="$(basename "$(dirname "${main}")")"
+        latexmk -cd -r "{{latexmkrc}}" -jobname="${slug}" "${main}"
     done
 
 # Alias for compile
