@@ -114,11 +114,11 @@ $ENV{'TEXINPUTS'} = join(
 
 # dia:end
 
-# dia:begin latexmkrc/pdflatex.pl
+# dia:begin latexmkrc/lualatex.pl
 
-# pdfLaTeX
+# LuaLaTeX
 
 # Sets pdf_mode (1 = pdflatex, 4 = lualatex, 5 = xelatex)
-$pdf_mode = 1;
+$pdf_mode = 4;
 
 # dia:end

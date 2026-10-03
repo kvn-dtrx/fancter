@@ -9,7 +9,15 @@
     2021-06-01 v0.0-dev A custom letter class.%
 ]
 
+% ChkTeX misreads a font declaration and pdfpages' nup value as prose
+% chktex-file 6
+% chktex-file 29
+
 % ---
+
+% iftex – Require LuaLaTeX for Unicode and OpenType support.
+\RequirePackage{iftex}
+\RequireLuaTeX
 
 % kvoptions for keyval options
 \RequirePackage{kvoptions}
@@ -159,7 +167,7 @@
     % Acrobat Reader menubar
     pdfmenubar={true},
     pdfpagemode={UseOutlines},%
-    pdfcreator={pdfLaTeX},%
+    pdfcreator={LuaLaTeX},%
     pdfpagelayout={OneColumn},%
     pdfpagelabels={true},%
     % pageanchor={false},%
