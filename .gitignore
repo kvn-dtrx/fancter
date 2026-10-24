@@ -9,12 +9,12 @@
 # --- Base ---
 
 # macOS
-._*
 .AppleDouble
 .DS_Store
 .LSOverride
 .Spotlight-V100
 .Trashes
+._*
 * [0-9]
 * [0-9].*
 * copy
@@ -36,22 +36,46 @@ Thumbs.db
 *.bak
 *.bak[0-9]*
 *.bkp
+*.cache
 *.log
+*.old
+*.swn
+*.swns
 *.swo
 *.swp
 *.tmp
+*.tmp.*
+*_tmp.*
+build/
+cache/
+.cache/
 log/
 .log/
 logs/
 .logs/
 tmp/
 .tmp/
-cache/
-.cache/
+
+# Local mountpoints
+mnt/
+mount/
+mounts/
+
+# Scripting-language artefacts
+*.py[cod]
+*.rbc
+.ruby-lsp/
+__pycache__/
 
 # Local environment variables
 .env
 .env.*
+env/
+env.bak/
+
+# Local configuration overrides
+*.local
+*.local.*
 
 # dia:end
 
@@ -67,11 +91,16 @@ cache/
 *.fls
 *.fmt
 *.fot
+*.gz
 *.lof
 *.log
 *.lot
+*.ownaux
 *.out
+*.thms
 *.toc
+*.wrt
+*.xwm
 
 # Generated if empty string is given at "Please type another file name for output:"
 .dvi
